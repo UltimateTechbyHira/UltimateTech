@@ -26,7 +26,7 @@ const imageConfig = imageHostURL
   : {}
 
 export default defineConfig({
-  site: '/',
+  site,
   output: 'static',
   trailingSlash: 'always', // Not recommended to change
   prefetch: {
