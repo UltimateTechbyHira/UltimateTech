@@ -5,13 +5,13 @@ import type {
 export const themeConfig: ThemeConfig = {
   site: {
     title: 'Ultimate Tech',
-    subtitle: 'Just an another Tech Blog',
-    description: 'Ultimate Tech is a tech blog that provides the latest tech news, how-to tutorials, coding related content, and apps.',
+    subtitle: 'Tutorials, Coding, Tips & Tricks',
+    description: 'Just an another tech blog that provides the latest tech news, how-to tutorials, coding related content, and more.',
     i18nTitle: false,
     author: 'Harman Singh Hira',
     url: 'https://ultimatetech.org',
     base: '/',
-    favicon: '/icons/favicon.svg',
+    favicon: '/icons/favicon.ico',
     keywords: 'Ultimate Tech, Tech Blog, Technology, Latest Tech News, How-To Tutorials, Coding',
   },
   color: {
