@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import type { Language } from '@/i18n/config'
+import { SocialShare } from 'astro-social-share'
 import { getCollection, render } from 'astro:content'
 import Comment from '@/components/Comment/Index.astro'
 import PostDate from '@/components/PostDate.astro'
@@ -104,7 +105,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
     <!-- Date -->
     <div
       id="post-date"
-      class="mb-[1.3rem] block c-primary font-time"
+      class="block c-primary font-time"
       transition:name={`time-${slug}${currentLang ? `-${currentLang}` : ''}`}
       data-disable-theme-toggle-transition
     >
@@ -114,6 +115,29 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
         minutes={remarkPluginFrontmatter.minutes}
       />
     </div>
+
+    <!-- Share -->
+     <SocialShare
+       description={description}
+       title={post.data.title}
+     />
+     <slot name="astro-social-share-css">
+  <style is:global>
+    .astro-social-share {
+        margin: 20px 0px;
+        height: 24px;
+    }
+    .astro-social-share a {
+        text-decoration: none;
+        margin-right: 10px;
+    }
+    .astro-social-share svg {
+        height: 24px;
+        fill: #B7B4B3;
+    }
+  </style>
+</slot>
+
     <!-- TOC -->
     {post.data.toc && <TOC headings={headings} />}
     <!-- Content -->
