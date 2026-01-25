@@ -1,0 +1,55 @@
+{
+  "file": "src/content/posts/new-post.md",
+  "name": "posts",
+  "fileType": "md",
+  "fmType": "yaml",
+  "template": [
+    {
+      "name": "title",
+      "label": "Title",
+      "type": "string",
+      "value": "",
+      "isRequired": true,
+      "defaultValue": ""
+    },
+    {
+      "name": "published",
+      "label": "Published",
+      "type": "Date",
+      "value": "",
+      "defaultValue": "",
+      "alwaysUseCurrentDate": false
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "type": "string",
+      "value": "",
+      "isRequired": true,
+      "defaultValue": ""
+    },
+    {
+      "name": "tags",
+      "label": "Tags",
+      "type": "Array",
+      "value": [],
+      "isRequired": true,
+      "defaultValue": ""
+    },
+    {
+      "name": "draft",
+      "label": "Draft",
+      "type": "boolean",
+      "value": false,
+      "isRequired": true,
+      "defaultValue": false
+    },
+    {
+      "name": "toc",
+      "label": "TOC",
+      "type": "boolean",
+      "value": false,
+      "defaultValue": false
+    }
+  ]
+}
