@@ -17,6 +17,7 @@ export interface ThemeConfig {
     url: string
     base: string
     favicon: string
+    keywords?: string
   }
   color: {
     mode: 'light' | 'dark' | 'auto'
@@ -80,6 +81,10 @@ export interface ThemeConfig {
       userID?: string
     }
     apiflashKey?: string
+    twitterCreator?: string
+    robots?: string
+    googlebot?: string
+    bingbot?: string
   }
   footer: {
     links: {

@@ -1,5 +1,5 @@
 import satori from 'satori'
-import { SITE } from '@/config'
+import { themeConfig } from '@/config'
 import loadGoogleFonts from '../loadGoogleFont'
 
 export default async () => {
@@ -78,14 +78,14 @@ export default async () => {
                             type: 'p',
                             props: {
                               style: { fontSize: 72, fontWeight: 'bold' },
-                              children: SITE.title,
+                              children: themeConfig.site.title,
                             },
                           },
                           {
                             type: 'p',
                             props: {
                               style: { fontSize: 28 },
-                              children: SITE.desc,
+                              children: themeConfig.site.description,
                             },
                           },
                         ],
@@ -96,18 +96,45 @@ export default async () => {
                       props: {
                         style: {
                           display: 'flex',
-                          justifyContent: 'flex-end',
+                          justifyContent: 'space-between',
                           width: '100%',
                           marginBottom: '8px',
                           fontSize: 28,
                         },
-                        children: {
-                          type: 'span',
-                          props: {
-                            style: { overflow: 'hidden', fontWeight: 'bold' },
-                            children: new URL(SITE.website).hostname,
+                        children: [
+                          {
+                            type: 'span',
+                            props: {
+                              children: [
+                                'by ',
+                                {
+                                  type: 'span',
+                                  props: {
+                                    style: { color: 'transparent' },
+                                    children: '"',
+                                  },
+                                },
+                                {
+                                  type: 'span',
+                                  props: {
+                                    style: {
+                                      overflow: 'hidden',
+                                      fontWeight: 'bold',
+                                    },
+                                    children: themeConfig.site.author,
+                                  },
+                                },
+                              ],
+                            },
                           },
-                        },
+                          {
+                            type: 'span',
+                            props: {
+                              style: { fontWeight: 'bold' },
+                              children: `@ UltimateTech.org`,
+                            },
+                          },
+                        ],
                       },
                     },
                   ],
@@ -122,7 +149,7 @@ export default async () => {
       width: 1200,
       height: 630,
       embedFont: true,
-      fonts: await loadGoogleFonts(SITE.title + SITE.desc + SITE.website),
+      fonts: await loadGoogleFonts(themeConfig.site.title + themeConfig.site.description + themeConfig.site.url),
     },
   )
 }

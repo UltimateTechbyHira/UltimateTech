@@ -1,55 +1,43 @@
-import type { CollectionEntry } from 'astro:content'
-import { OGImageRoute } from 'astro-og-canvas'
+import type { APIRoute } from 'astro'
+import { Buffer } from 'node:buffer'
 import { getCollection } from 'astro:content'
-import { getPostDescription } from '@/utils/description'
+import sharp from 'sharp'
+import generatePostOG from '@/utils/og/post'
+import generateSiteOG from '@/utils/og/site'
 
-// eslint-disable-next-line antfu/no-top-level-await
-const posts = await getCollection('posts')
+export async function getStaticPaths() {
+  const posts = await getCollection('posts')
+  const postPaths = posts.map(post => ({
+    params: { image: `${post.id}.png` },
+    props: { post },
+  }))
 
-// Create slug-to-metadata lookup object for blog posts
-const pages = Object.fromEntries(
-  posts.map((post: CollectionEntry<'posts'>) => [
-    post.id,
-    {
-      title: post.data.title,
-      description: getPostDescription(post, 'og'),
-    },
-  ]),
-)
+  return [
+    ...postPaths,
+    { params: { image: 'index.png' }, props: { post: null } },
+  ]
+}
 
-// Configure Open Graph image generation route
-// eslint-disable-next-line antfu/no-top-level-await
-export const { getStaticPaths, GET } = await OGImageRoute({
-  param: 'image',
-  pages,
-  getImageOptions: (_path, page) => ({
-    title: page.title,
-    description: page.description,
-    logo: {
-      path: './public/icons/og-logo.png', // Required local path and PNG format
-      size: [250],
+export const GET: APIRoute = async ({ props }) => {
+  const { post } = props
+  let svg
+
+  if (post) {
+    svg = await generatePostOG(post)
+  }
+  else {
+    svg = await generateSiteOG()
+  }
+
+  // Convert SVG to PNG using sharp
+  const pngBuffer = await sharp(Buffer.from(svg))
+    .png()
+    .toBuffer()
+
+  return new Response(new Uint8Array(pngBuffer), {
+    headers: {
+      'Content-Type': 'image/png',
+      'Cache-Control': 'public, max-age=31536000, immutable',
     },
-    border: {
-      color: [242, 241, 245],
-      width: 20,
-    },
-    font: {
-      title: {
-        families: ['Noto Sans SC'],
-        weight: 'Bold',
-        color: [34, 33, 36],
-        lineHeight: 1.5,
-      },
-      description: {
-        families: ['Noto Sans SC'],
-        color: [72, 71, 74],
-        lineHeight: 1.5,
-      },
-    },
-    fonts: [
-      './public/fonts/NotoSansSC-Bold.otf',
-      './public/fonts/NotoSansSC-Regular.otf',
-    ],
-    bgGradient: [[242, 241, 245]],
-  }),
-})
+  })
+}

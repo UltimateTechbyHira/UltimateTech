@@ -1,6 +1,6 @@
 import satori from 'satori'
 // import { html } from "satori-html";
-import { SITE } from '@/config'
+import { themeConfig } from '@/config'
 import loadGoogleFonts from '../loadGoogleFont'
 
 export default async (post) => {
@@ -65,7 +65,7 @@ export default async (post) => {
                       type: 'p',
                       props: {
                         style: {
-                          fontSize: 72,
+                          fontSize: 60,
                           fontWeight: 'bold',
                           maxHeight: '84%',
                           overflow: 'hidden',
@@ -103,10 +103,17 @@ export default async (post) => {
                                       overflow: 'hidden',
                                       fontWeight: 'bold',
                                     },
-                                    children: post.data.author,
+                                    children: post.data.author || themeConfig.site.author,
                                   },
                                 },
                               ],
+                            },
+                          },
+                          {
+                            type: 'span',
+                            props: {
+                              style: { fontWeight: 'bold' },
+                              children: `@ UltimateTech.org`,
                             },
                           },
                         ],
@@ -125,7 +132,7 @@ export default async (post) => {
       height: 630,
       embedFont: true,
       fonts: await loadGoogleFonts(
-        `${post.data.title + post.data.author + SITE.title}by`,
+        `${post.data.title + (post.data.author || themeConfig.site.author) + themeConfig.site.title}by`,
       ),
     },
   )

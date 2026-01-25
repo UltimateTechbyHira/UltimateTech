@@ -8,6 +8,7 @@ interface Translation {
   tags: string
   about: string
   toc: string
+  keywords?: string
 }
 
 export const ui: Record<Language, Translation> = {
@@ -28,6 +29,7 @@ export const ui: Record<Language, Translation> = {
     tags: 'Tags',
     about: 'About',
     toc: 'Table of Contents',
+    keywords: 'Ultimate Tech, Tech Blog, Technology, Latest Tech News, How-To Tutorials, Coding',
   },
   'es': {
     title: 'Retipografía',

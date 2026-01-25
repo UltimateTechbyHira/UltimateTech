@@ -12,6 +12,7 @@ export const themeConfig: ThemeConfig = {
     url: 'https://ultimatetech.org',
     base: '/',
     favicon: '/icons/favicon.svg',
+    keywords: 'Ultimate Tech, Tech Blog, Technology, Latest Tech News, How-To Tutorials, Coding',
   },
   color: {
     mode: 'auto',
@@ -53,6 +54,7 @@ export const themeConfig: ThemeConfig = {
   },
   seo: {
     twitterID: '@HSinghHira',
+    twitterCreator: '@HSinghHira',
     verification: {
       google: '',
       bing: '',
@@ -65,7 +67,9 @@ export const themeConfig: ThemeConfig = {
       feedID: '',
       userID: '',
     },
-    apiflashKey: '',
+    robots: 'index, follow',
+    googlebot: 'index, follow',
+    bingbot: 'index, follow',
   },
   footer: {
     links: [{

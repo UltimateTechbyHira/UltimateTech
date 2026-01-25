@@ -1,9 +1,9 @@
 {
-  "name": "astro-theme-retypeset",
+  "name": "ultimatetech",
   "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@10.26.0",
-  "repository": "https://github.com/radishzzz/astro-theme-retypeset",
+  "repository": "https://github.com/UltimateTechbyHira/UltimateTech",
   "scripts": {
     "dev": "astro check && astro dev",
     "build": "astro check && astro build && pnpm apply-lqip",
@@ -39,6 +39,7 @@
     "remark-directive": "^4.0.0",
     "remark-math": "^6.0.0",
     "sanitize-html": "^2.17.0",
+    "satori": "^0.19.1",
     "sharp": "^0.34.5",
     "twikoo": "^1.6.44",
     "unist-util-visit": "^5.0.0"
