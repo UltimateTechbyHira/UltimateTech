@@ -45,7 +45,10 @@ jobs:
           const { execSync } = require('child_process');
 
           function processMarkdownFiles(dir) {
-            if (!fs.existsSync(dir)) return;
+            if (!fs.existsSync(dir)) {
+              console.log(`Directory does not exist: ${dir}`);
+              return;
+            }
             
             const files = fs.readdirSync(dir, { withFileTypes: true });
             
@@ -61,15 +64,18 @@ jobs:
           }
 
           function processFile(filePath) {
+            console.log(`\nProcessing: ${filePath}`);
             let content = fs.readFileSync(filePath, 'utf8');
             
             // Check if file has frontmatter
             if (!content.startsWith('---')) {
+              console.log(`  ⏭️  No frontmatter found, skipping`);
               return;
             }
 
             const frontmatterEnd = content.indexOf('---', 3);
             if (frontmatterEnd === -1) {
+              console.log(`  ⏭️  Malformed frontmatter, skipping`);
               return;
             }
 
@@ -88,11 +94,14 @@ jobs:
               creationDate = new Date().toISOString();
             }
 
+            console.log(`  📅 Git creation date: ${creationDate}`);
+
             // Parse frontmatter into lines and build a clean version
             const lines = frontmatter.split('\n');
             const cleanedLines = [];
             let hasPublished = false;
             let needsFix = false;
+            let publishedCount = 0;
 
             for (const line of lines) {
               const trimmedLine = line.trim();
@@ -103,25 +112,30 @@ jobs:
               }
 
               // Check if this is a 'published' field
-              const pubMatch = trimmedLine.match(/^published:\s*['"]?([^'"\n]+)['"]?$/);
+              const pubMatch = trimmedLine.match(/^published:\s*(.+)$/);
               
               if (pubMatch) {
+                publishedCount++;
+                console.log(`  🔍 Found 'published' field #${publishedCount}: ${trimmedLine}`);
+                
                 if (hasPublished) {
                   // Skip duplicate published field
-                  console.log(`Removing duplicate 'published' field in ${filePath}`);
+                  console.log(`  ❌ Removing duplicate 'published' field`);
                   needsFix = true;
                   continue;
                 }
                 
-                const existingDate = pubMatch[1].trim().replace(/['"]/g, '');
+                const rawValue = pubMatch[1].trim();
+                const existingDate = rawValue.replace(/^['"]|['"]$/g, '');
                 
                 // Check if date format is correct
-                if (!existingDate.includes('T') || pubMatch[1].includes("'") || pubMatch[1].includes('"')) {
-                  console.log(`Fixing published date format in ${filePath}`);
+                if (!existingDate.includes('T') || rawValue.startsWith("'") || rawValue.startsWith('"')) {
+                  console.log(`  🔧 Fixing published date format: ${rawValue} -> ${creationDate}`);
                   cleanedLines.push(`published: ${creationDate}`);
                   needsFix = true;
                 } else {
-                  cleanedLines.push(trimmedLine);
+                  console.log(`  ✅ Date format is correct`);
+                  cleanedLines.push(line);
                 }
                 
                 hasPublished = true;
@@ -133,29 +147,34 @@ jobs:
 
             // Add 'published' if it doesn't exist
             if (!hasPublished) {
-              console.log(`Adding missing 'published' field in ${filePath}`);
+              console.log(`  ➕ Adding missing 'published' field`);
               cleanedLines.push(`published: ${creationDate}`);
               needsFix = true;
             }
 
             if (needsFix) {
+              console.log(`  💾 Writing fixes to file...`);
               // Rebuild frontmatter ensuring no extra blank lines at start
               let newFrontmatter = cleanedLines.join('\n').trim();
               const newContent = `---\n${newFrontmatter}\n---${body}`;
               fs.writeFileSync(filePath, newContent, 'utf8');
+              console.log(`  ✅ File updated successfully`);
+            } else {
+              console.log(`  ✅ No changes needed`);
             }
           }
 
           // Process content directory (adjust path to match your structure)
           const contentDirs = ['src/content/posts', 'src/content/blog'];
+          console.log('🔍 Starting to scan for markdown files...\n');
           for (const dir of contentDirs) {
+            console.log(`\n📁 Checking directory: ${dir}`);
             if (fs.existsSync(dir)) {
-              console.log(`Processing ${dir}...`);
               processMarkdownFiles(dir);
             }
           }
 
-          console.log('Date fixing complete!');
+          console.log('\n✨ Date fixing process complete!');
           EOF
       
       # Commit and push fixes if any were made
@@ -163,10 +182,18 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          echo "📋 Checking for changes..."
+          git status
           git add -A
-          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Auto-fix: Update publish dates in blog posts"
-          git push || true
-        continue-on-error: true
+          if git diff --staged --quiet; then
+            echo "✅ No changes to commit"
+          else
+            echo "💾 Committing changes..."
+            git commit -m "🤖 Auto-fix: Update publish dates in blog posts"
+            echo "🚀 Pushing changes..."
+            git push
+            echo "✅ Changes pushed successfully"
+          fi
       
       # Build the Astro site
       - name: Build Astro site
