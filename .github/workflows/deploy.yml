@@ -1,7 +1,7 @@
 name: Deploy to Cloudflare Pages
 
 on:
-  # Trigger on push to main branch (adjust if your default branch is different)
+  # Trigger on push to main branch
   push:
     branches:
       - main
@@ -9,13 +9,13 @@ on:
   # Allow manual trigger from GitHub Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: write
+  deployments: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: read
-      deployments: write
     
     name: Build and Deploy to Cloudflare Pages
     
@@ -23,6 +23,8 @@ jobs:
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for Git dates
       
       # Setup Node.js (Astro requires Node.js)
       - name: Setup Node.js
@@ -33,6 +35,133 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: npm install
+      
+      # Fix publish dates in blog posts
+      - name: Add missing dates to markdown files
+        run: |
+          node << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const { execSync } = require('child_process');
+
+          function processMarkdownFiles(dir) {
+            if (!fs.existsSync(dir)) return;
+            
+            const files = fs.readdirSync(dir, { withFileTypes: true });
+            
+            for (const file of files) {
+              const fullPath = path.join(dir, file.name);
+              
+              if (file.isDirectory()) {
+                processMarkdownFiles(fullPath);
+              } else if (file.name.endsWith('.md')) {
+                processFile(fullPath);
+              }
+            }
+          }
+
+          function processFile(filePath) {
+            let content = fs.readFileSync(filePath, 'utf8');
+            
+            // Check if file has frontmatter
+            if (!content.startsWith('---')) {
+              return;
+            }
+
+            const frontmatterEnd = content.indexOf('---', 3);
+            if (frontmatterEnd === -1) {
+              return;
+            }
+
+            const frontmatter = content.substring(3, frontmatterEnd);
+            const body = content.substring(frontmatterEnd + 3);
+
+            let modified = false;
+            let newFrontmatter = frontmatter;
+
+            // Get Git creation date (first commit) in ISO 8601 format
+            let creationDate;
+            try {
+              const gitDate = execSync(
+                `git log --follow --format=%aI --reverse "${filePath}" | head -1`,
+                { encoding: 'utf8' }
+              ).trim();
+              creationDate = gitDate || new Date().toISOString();
+            } catch (e) {
+              creationDate = new Date().toISOString();
+            }
+
+            // Get Git modification date (last commit) in ISO 8601 format
+            let modificationDate;
+            try {
+              const gitDate = execSync(
+                `git log -1 --format=%aI "${filePath}"`,
+                { encoding: 'utf8' }
+              ).trim();
+              modificationDate = gitDate || new Date().toISOString();
+            } catch (e) {
+              modificationDate = new Date().toISOString();
+            }
+
+            // Check for 'published' field (your schema uses this)
+            const pubMatch = frontmatter.match(/^published:\s*['"]?([^'"\n]+)['"]?$/m);
+            
+            if (pubMatch) {
+              const existingDate = pubMatch[1].trim().replace(/['"]/g, '');
+              // Check if it's in wrong format (short date without time, or has quotes)
+              if (!existingDate.includes('T') || pubMatch[1].includes("'") || pubMatch[1].includes('"')) {
+                console.log(`Fixing published format in ${filePath}: "${pubMatch[1]}" -> "${creationDate}"`);
+                newFrontmatter = newFrontmatter.replace(/^published:.*$/m, `published: ${creationDate}`);
+                modified = true;
+              }
+            } else {
+              // Add published if missing
+              console.log(`Adding published to ${filePath}`);
+              newFrontmatter += `\npublished: ${creationDate}`;
+              modified = true;
+            }
+
+            // Check for 'updated' or 'modified' field if your schema has it
+            const modMatch = frontmatter.match(/^(updated|modified):\s*['"]?([^'"\n]+)['"]?$/m);
+            
+            if (modMatch) {
+              const existingDate = modMatch[2].trim().replace(/['"]/g, '');
+              const fieldName = modMatch[1];
+              // Check if it's in wrong format
+              if (!existingDate.includes('T') || modMatch[0].includes("'") || modMatch[0].includes('"')) {
+                console.log(`Fixing ${fieldName} format in ${filePath}: "${modMatch[2]}" -> "${modificationDate}"`);
+                newFrontmatter = newFrontmatter.replace(new RegExp(`^${fieldName}:.*$`, 'm'), `${fieldName}: ${modificationDate}`);
+                modified = true;
+              }
+            }
+
+            if (modified) {
+              const newContent = `---${newFrontmatter}\n---${body}`;
+              fs.writeFileSync(filePath, newContent, 'utf8');
+            }
+          }
+
+          // Process content directory (adjust path to match your structure)
+          const contentDirs = ['src/content/posts', 'src/content/blog'];
+          for (const dir of contentDirs) {
+            if (fs.existsSync(dir)) {
+              console.log(`Processing ${dir}...`);
+              processMarkdownFiles(dir);
+            }
+          }
+
+          console.log('Date fixing complete!');
+          EOF
+      
+      # Commit and push fixes if any were made
+      - name: Commit date fixes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Auto-fix: Update publish dates in blog posts"
+          git push || true
+        continue-on-error: true
       
       # Build the Astro site
       - name: Build Astro site
