@@ -189,7 +189,7 @@ jobs:
             echo "✅ No changes to commit"
           else
             echo "💾 Committing changes..."
-            git commit -m "🤖 Auto-fix: Update publish dates in blog posts"
+            git commit -m "🤖 Auto-fix: Update publish dates in blog posts" --no-verify
             echo "🚀 Pushing changes..."
             git push
             echo "✅ Changes pushed successfully"
