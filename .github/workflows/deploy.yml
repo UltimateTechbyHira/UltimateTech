@@ -1,0 +1,48 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  # Trigger on push to main branch (adjust if your default branch is different)
+  push:
+    branches:
+      - main
+  
+  # Allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      deployments: write
+    
+    name: Build and Deploy to Cloudflare Pages
+    
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      # Setup Node.js (Astro requires Node.js)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+      
+      # Build the Astro site
+      - name: Build Astro site
+        run: npm run build
+      
+      # Deploy to Cloudflare Pages using Wrangler
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=ultimatetech-org --commit-dirty
