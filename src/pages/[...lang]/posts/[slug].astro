@@ -120,23 +120,25 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
      <SocialShare
        description={description}
        title={post.data.title}
-     />
-     <slot name="astro-social-share-css">
-  <style is:global>
-    .astro-social-share {
-        margin: 20px 0px;
-        height: 24px;
-    }
-    .astro-social-share a {
-        text-decoration: none;
-        margin-right: 10px;
-    }
-    .astro-social-share svg {
-        height: 24px;
-        fill: #B7B4B3;
-    }
-  </style>
-</slot>
+     >
+      <style slot="astro-social-share-css" is:global>
+        .astro-social-share {
+            margin: 20px 0px;
+            height: 24px;
+        }
+        .astro-social-share a {
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .astro-social-share svg {
+            height: 24px;
+            fill: #1D1B1A;
+        }
+        html.dark .astro-social-share svg {
+            fill: #E7E5E4 !important;
+        }
+      </style>
+     </SocialShare>
 
     <!-- TOC -->
     {post.data.toc && <TOC headings={headings} />}

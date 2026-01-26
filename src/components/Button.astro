@@ -1,7 +1,8 @@
 ---
 import type { Language } from '@/i18n/config'
 import LanguageSwitcherIcon from '@/assets/icons/language-switcher.svg'
-import ThemeToggleIcon from '@/assets/icons/theme-toggle.svg'
+import MoonIcon from '@/assets/icons/moon.svg'
+import SunIcon from '@/assets/icons/sun.svg'
 import { moreLocales, themeConfig } from '@/config'
 import { getNextGlobalLangPath, getNextSupportedLangPath } from '@/i18n/path'
 
@@ -54,9 +55,18 @@ const nextUrl = supportedLangs.length > 0
     data-dark-mode={darkMode}
     aria-label="Switch light/dark theme"
   >
-    <ThemeToggleIcon
+
+    <SunIcon
+      class="sun-icon hidden w-8 dark:block"
       aria-hidden="true"
-      fill="currentColor"
+      fill="none"
+      stroke="currentColor"
+    />
+    <MoonIcon
+      class="moon-icon block w-8 dark:hidden"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
     />
   </button>
 </div>
