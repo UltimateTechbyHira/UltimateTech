@@ -33,7 +33,7 @@ jobs:
       
       # Install dependencies
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       
       # Build the Astro site
       - name: Build Astro site
