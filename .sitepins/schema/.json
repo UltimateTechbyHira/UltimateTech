@@ -35,7 +35,7 @@
       "type": "Array",
       "value": [],
       "isRequired": false,
-      "defaultValue": []
+      "defaultValue": ""
     },
     {
       "name": "draft",
