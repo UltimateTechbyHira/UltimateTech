@@ -5,7 +5,7 @@ import type {
 export const themeConfig: ThemeConfig = {
   site: {
     title: 'Ultimate Tech',
-    subtitle: 'Tutorials, Coding, Tips & Tricks',
+    subtitle: 'How-to Tutorials, Coding, Ethical Hacks, Tips & Tricks',
     description: 'Just an another tech blog that provides the latest tech news, how-to tutorials, coding related content, and more.',
     i18nTitle: false,
     author: 'Harman Singh Hira',
@@ -15,7 +15,7 @@ export const themeConfig: ThemeConfig = {
     keywords: 'Ultimate Tech, Tech Blog, Technology, Latest Tech News, How-To Tutorials, Coding',
   },
   color: {
-    mode: 'auto',
+    mode: 'dark',
     light: {
       primary: 'oklch(25% 0.005 298)',
       secondary: 'oklch(40% 0.005 298)',
