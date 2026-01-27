@@ -31,7 +31,8 @@ Let's get into it, platform by platform. Keeping it real simple.
 4. Right-click the site in results → "Forget About This Site".
 5. It zaps cache, cookies, everything for that domain without touching the rest.
 
-Bonus: if it's just one page, right-click that specific entry → Delete Page. Chef's kiss.
+> [!TIP]
+> If it's just one page, right-click that specific entry → Delete Page. Chef's kiss.
 
 ## Safari (Mac/iOS vibes)
 
@@ -64,9 +65,10 @@ Arc's got that premium feel but cache clear is sneaky.
 
 1. For quick refresh ignoring cache: there's often a "Clear cookies and refresh" or similar in the View menu (sometimes shows as Clear cache and refresh).
 2. Dev tools way (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> / <kbd>F12</kbd>) → same as Chrome/Brave, long-hold reload for empty cache hard reload.
-3. If you're deep in it, Settings (C<kbd>Ctrl</kbd> +,) → check profiles/advanced for more, but usually the hard reload does the job without full wipe.
+3. If you're deep in it, Settings (<kbd>Ctrl</kbd> +,) → check profiles/advanced for more, but usually the hard reload does the job without full wipe.
 
-Pro tip across the board: if you're on a CDN like Cloudflare, purge that cache too after browser side, otherwise it might still serve old stuff. And always test in incognito/private mode to confirm it's a cache issue.
+> [!TIP]
+> If you're on a CDN like Cloudflare, purge that cache too after browser side, otherwise it might still serve old stuff. And always test in incognito/private mode to confirm it's a cache issue.
 
 There you go, legends. No more full data nuke just coz one site acting up. Saved me so much headache, hope it saves yours too. If you've got extra tricks for Opera or some other browser, or if something changed in 2026 updates, drop it in the comments below. Let's keep the knowledge flowing 🙌
 
