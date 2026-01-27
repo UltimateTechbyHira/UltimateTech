@@ -23,11 +23,11 @@ Make sure your Chrome is **updated** first. Old versions can be a bit jugaadu.
 
 ### Do this 👇
 
-* Open **Google Chrome** on your phone&#x20;
-* Tap the **three dots (⋮)** in the top-right corner&#x20;
-* Go to **Settings**&#x20;
-* Tap **Downloads**&#x20;
-* **Turn OFF** 👉 _Automatically open PDFs_&#x20;
+* Open **Google Chrome** on your phone;
+* Tap the **three dots (⋮)** in the top-right corner;
+* Go to **Settings**;
+* Tap **Downloads**;
+* **Turn OFF** 👉 _Automatically open PDFs_;
 
 Boom 💥Now PDFs will just download and chill, no auto-opening, no drama.
 
@@ -39,14 +39,14 @@ Desktop Chrome is a bit different but still sorted in a few clicks.
 
 ### Follow these steps 👇
 
-* Open **Google Chrome** on your PC&#x20;
-* Click the **three dots (⋮)** in the top-right&#x20;
-* Select **Settings** _(Pro tip: type `chrome://settings` in the address bar, faster, bro)_&#x20;
-* Go to **Privacy and Security**&#x20;
-* Click **Site Settings**&#x20;
-* Scroll down to **Additional content settings**&#x20;
-* Click **PDF documents**&#x20;
-* Select 👉 **Download PDFs instead of opening them in Chrome**&#x20;
+* Open **Google Chrome** on your PC ;
+* Click the **three dots (⋮)** in the top-right ;
+* Select **Settings** _(Pro tip: type `chrome://settings` in the address bar, faster, bro)_ ;
+* Go to **Privacy and Security** ;
+* Click **Site Settings** ;
+* Scroll down to **Additional content settings** ;
+* Click **PDF documents** ;
+* Select 👉 **Download PDFs instead of opening them in Chrome** ;
 
 That’s it. Sorted. Proper sorted. 😌👌
 
@@ -56,13 +56,13 @@ That’s it. Sorted. Proper sorted. 😌👌
 
 From now on:
 
-* Chrome will **only download PDFs**&#x20;
-* It won’t auto-open them anymore (privacy = stonks 📈)&#x20;
+* Chrome will **only download PDFs**;
+* It won’t auto-open them anymore (privacy = stonks 📈);
 
 If you want to open a PDF later:
 
-* Right-click the file&#x20;
-* Select **Open with → Google Chrome** or any PDF reader you prefer&#x20;
+* Right-click the file;
+* Select **Open with → Google Chrome** or any PDF reader you prefer;
 
 Full control. No bakwaas. No surprises.
 
