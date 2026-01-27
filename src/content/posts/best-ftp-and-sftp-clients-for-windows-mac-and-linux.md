@@ -1,6 +1,6 @@
 ---
 title: Best FTP and SFTP Clients for Windows, Mac and Linux
-published: ""
+published: 2026-01-27T16:15:08+13:00
 description: "I use FTP clients across Windows, Mac, and Linux. Here is my
   honest, Gen Z take on the ones that actually work in real life."
 tags: []
