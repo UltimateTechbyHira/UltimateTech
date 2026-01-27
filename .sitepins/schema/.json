@@ -30,14 +30,6 @@
       "defaultValue": ""
     },
     {
-      "name": "tags",
-      "label": "Tags",
-      "type": "Array",
-      "value": [],
-      "isRequired": false,
-      "defaultValue": ""
-    },
-    {
       "name": "draft",
       "label": "Draft",
       "type": "boolean",
@@ -55,22 +47,8 @@
       "name": "pin",
       "label": "Pin",
       "type": "number",
-      "value": 0,
+      "value": false,
       "defaultValue": 0
-    },
-    {
-      "name": "lang",
-      "label": "Lang",
-      "type": "string",
-      "value": "en",
-      "defaultValue": "en"
-    },
-    {
-      "name": "abbrlink",
-      "label": "Abbrlink",
-      "type": "string",
-      "value": "",
-      "defaultValue": ""
     }
   ]
 }
