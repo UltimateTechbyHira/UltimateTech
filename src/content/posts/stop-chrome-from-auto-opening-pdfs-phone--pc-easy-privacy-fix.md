@@ -1,6 +1,6 @@
 ---
 title: Stop Chrome from Auto-Opening PDFs (Phone & PC) – Easy Privacy Fix
-published: 2026-01-26T17:44:14+13:00
+published: 2026-01-26T04:44:14.000Z
 description: "Stop Google Chrome from automatically opening PDFs on mobile and
   PC. Simple step-by-step privacy fix using Chrome settings. Easy as!"
 tags: []
