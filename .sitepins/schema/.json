@@ -34,8 +34,7 @@
       "type": "Array",
       "value": [],
       "isRequired": true,
-      "defaultValue": "",
-      "subType": "string"
+      "defaultValue": ""
     },
     {
       "name": "draft",
