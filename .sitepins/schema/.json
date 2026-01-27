@@ -1,0 +1,76 @@
+{
+  "file": "src/content/posts/9-apps-to-hack-in-app-purchase-in-android.md",
+  "name": "posts",
+  "fileType": "md",
+  "fmType": "yaml",
+  "template": [
+    {
+      "name": "title",
+      "label": "Title",
+      "type": "string",
+      "value": "",
+      "isRequired": true,
+      "defaultValue": ""
+    },
+    {
+      "name": "published",
+      "label": "Published",
+      "type": "Date",
+      "value": "2026-01-27",
+      "isRequired": true,
+      "defaultValue": "",
+      "alwaysUseCurrentDate": true
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "type": "string",
+      "value": "",
+      "isRequired": true,
+      "defaultValue": ""
+    },
+    {
+      "name": "tags",
+      "label": "Tags",
+      "type": "Array",
+      "value": [],
+      "isRequired": true,
+      "defaultValue": ""
+    },
+    {
+      "name": "draft",
+      "label": "Draft",
+      "type": "boolean",
+      "value": true,
+      "defaultValue": "true"
+    },
+    {
+      "name": "toc",
+      "label": "Toc",
+      "type": "boolean",
+      "value": false,
+      "defaultValue": false
+    },
+    {
+      "name": "pin",
+      "label": "Pin",
+      "type": "number",
+      "value": 0,
+      "defaultValue": 0
+    },
+    {
+      "name": "lang",
+      "label": "Lang",
+      "type": "string",
+      "value": "en",
+      "defaultValue": "en"
+    },
+    {
+      "name": "abbrlink",
+      "label": "Abbrlink",
+      "type": "string",
+      "value": "",
+      "defaultValue": ""
+    }
+  ]
+}
