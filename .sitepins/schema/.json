@@ -34,8 +34,8 @@
       "label": "Tags",
       "type": "Array",
       "value": [],
-      "isRequired": true,
-      "defaultValue": ""
+      "isRequired": false,
+      "defaultValue": []
     },
     {
       "name": "draft",
