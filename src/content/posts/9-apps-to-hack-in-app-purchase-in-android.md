@@ -8,7 +8,7 @@ tags:
   - Android
 draft: false
 toc: false
-pin:0
+pin: 0
 lang: en
 abbrlink: theme-guide
 ---
