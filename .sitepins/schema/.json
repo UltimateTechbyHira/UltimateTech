@@ -34,22 +34,23 @@
       "type": "Array",
       "value": [],
       "isRequired": true,
-      "defaultValue": ""
+      "defaultValue": "",
+      "subType": "string"
     },
     {
       "name": "draft",
       "label": "Draft",
       "type": "boolean",
-      "value": false,
+      "value": true,
       "isRequired": true,
-      "defaultValue": false
+      "defaultValue": "true"
     },
     {
       "name": "toc",
       "label": "TOC",
       "type": "boolean",
       "value": false,
-      "defaultValue": false
+      "defaultValue": "false"
     }
   ]
 }
