@@ -31,7 +31,7 @@ Now, here’s how I fix it.
 
 ***
 
-## Method 1: Allow an App Through Firewall Using the UI (Easy Mode) 🖱️
+## Method 1: Allow an App Through Firewall Using the UI
 
 This is the fastest way for most people.
 
@@ -50,7 +50,7 @@ Restart the app after this. Seriously, do not skip that. For most normal apps, t
 
 ***
 
-## Method 2: Allow an App Through Firewall Using PowerShell (Proper Control) ⚡
+## Method 2: Allow an App Through Firewall Using PowerShell
 
 Now we’re getting into the good stuff. I use this when:
 
