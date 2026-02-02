@@ -34,4 +34,13 @@ const copyright = defineCollection({
   }),
 })
 
-export const collections = { posts, copyright }
+const redirects = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/redirects' }),
+  schema: z.object({
+    from: z.string(),
+    to: z.string(),
+    status: z.number().optional().default(301),
+  }),
+})
+
+export const collections = { posts, copyright, redirects }

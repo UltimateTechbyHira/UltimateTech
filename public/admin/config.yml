@@ -39,3 +39,16 @@ collections:
     format: frontmatter
     fields:
       - {label: Body, name: body, widget: markdown, required: true}
+
+  - name: redirects
+    label: Redirections
+    label_singular: Redirection
+    folder: src/content/redirects
+    create: true
+    slug: '{{from}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - {label: From Path, name: from, widget: string, required: true, hint: e.g. /old-page}
+      - {label: To URL/Path, name: to, widget: string, required: true, hint: e.g. /new-page or https://example.com}
+      - {label: HTTP Status, name: status, widget: number, default: 301, required: false}

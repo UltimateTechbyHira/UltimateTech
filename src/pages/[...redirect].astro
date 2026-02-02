@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content'
+
+export async function getStaticPaths() {
+  const redirects = await getCollection('redirects')
+
+  return redirects.map((entry) => {
+    // Normalize path by removing leading and trailing slashes
+    let path = entry.data.from
+    if (path.startsWith('/'))
+path = path.slice(1)
+    if (path.endsWith('/'))
+path = path.slice(0, -1)
+
+    // If the path is empty, it means redirecting the home page (unlikely but possible)
+    // Dynamic parameters can't be empty in some Astro versions,
+    // but [...slug] handles it.
+
+    return {
+      params: { redirect: path || undefined },
+      props: { entry },
+    }
+  })
+}
+
+const { entry } = Astro.props
+const { to, status } = entry.data
+
+return Astro.redirect(to, status || 301);
+---
