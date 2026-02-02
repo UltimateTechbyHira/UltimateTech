@@ -29,10 +29,11 @@ collections:
       - {label: Pin Priority, name: pin, widget: number, default: 0, required: false, hint: '0 = not pinned, higher numbers = higher priority'}
 
   - name: copyright
-    label: Copyright
+    label: Copyright Notice
     label_singular: Copyright
     folder: src/content/copyright
-    create: true
+    create: false
+    delete: false
     slug: copyright
     extension: md
     format: frontmatter
