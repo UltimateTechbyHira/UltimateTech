@@ -27,4 +27,11 @@ const posts = defineCollection({
   }),
 })
 
-export const collections = { posts }
+const copyright = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/copyright' }),
+  schema: z.object({
+    lang: z.enum(['', ...allLocales]).optional().default(''),
+  }),
+})
+
+export const collections = { posts, copyright }

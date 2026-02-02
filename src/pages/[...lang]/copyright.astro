@@ -1,0 +1,40 @@
+---
+import { getCollection, render } from 'astro:content'
+import BackButton from '@/components/Widgets/BackButton.astro'
+import { allLocales } from '@/config'
+import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
+import Layout from '@/layouts/Layout.astro'
+
+export async function getStaticPaths() {
+  return allLocales.map(lang => ({
+    params: { lang: getLangRouteParam(lang) },
+  }))
+}
+
+const currentLang = getLangFromLocale(Astro.currentLocale)
+// Get page content with different language
+const allCopyrightEntries = await getCollection('copyright')
+const copyrightEntry = allCopyrightEntries.find(entry => entry.data.lang === currentLang)
+  ?? allCopyrightEntries.find(entry => entry.data.lang === '')
+const { Content } = copyrightEntry ? await render(copyrightEntry) : { Content: null }
+---
+
+<Layout>
+
+  <!-- Page Content -->
+  <div class="heti">
+    <div class="relative">
+      <!-- Go Back Button On Desktop -->
+      <BackButton />
+      <!-- Title -->
+      <h1 class="post-title">
+        <span data-disable-theme-toggle-transition>
+          Copyright
+        </span>
+      </h1>
+    </div>
+    <!-- Decorative Line -->
+    <div class="uno-decorative-line" />
+    {Content && <Content />}
+  </div>
+</Layout>
