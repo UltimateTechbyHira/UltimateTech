@@ -64,25 +64,20 @@ Here’s what’s inside:
 * App activity
 * Location data (yeah, that too 😬)
 
-On your computer:
-
-* Go to **My Activity** at [https://myactivity.google.com](https://myactivity.google.com)
-* Make sure you’re logged into your Google account
-
 Now choose your chaos level 👇
 
 * **Delete all search history**
-  * Click **Delete**
-  * Choose **All time**
+    - Click **Delete**
+    - Choose **All time**
 * **Delete searches from a specific time period**
-  * Click **Delete**
-  * Choose **Custom range**
+    - Click **Delete**
+    - Choose **Custom range**
 * **Delete searches from a single day**
-  * Find that day
-  * Click **Delete all activity from [day]**
+    - Find that day
+    - Click **Delete all activity from [day]**
 * **Delete just one embarrassing search**
-  * Find the search
-  * Click **Delete activity item**
+    - Find the search
+    - Click **Delete activity item**
 
 Lowkey love that Google lets you surgically delete stuff, very clutch 😌
 
@@ -139,9 +134,9 @@ Here’s how:
 * Find **Web & App Activity**
 * Click the text under **Auto delete**
 * Choose **Auto delete activity older than**
-  * 3 months
-  * 18 months
-  * 36 months
+    - 3 months
+    - 18 months
+    - 36 months
 * Click **Next**
 
 If you don’t want auto delete at all, you can select **Don’t auto delete activity**. Personally, I don’t recommend that, but hey, your data, your rules.
