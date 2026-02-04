@@ -2,7 +2,7 @@
 title: Hack Restrictions Passcode in iOS using Online Cracker
 published: 2026-02-03T22:19:00
 description: Forgot your iOS Restrictions passcode? Here’s a clear, legal guide to understand what it is and how to reset it without risking your data.
-draft: true
+draft: false
 toc: false
 pin: 0
 ---
