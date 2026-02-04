@@ -44,8 +44,8 @@ collections:
   - name: pages
     label: Pages
     files:
-      - label: Home Page
-        name: index
+      - label: Copyright Page
+        name: copyright
         file: src/content/copyright/copyright.md
         fields:
           - { label: Copyright, name: body, widget: markdown, required: true }
