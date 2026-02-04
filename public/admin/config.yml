@@ -28,18 +28,6 @@ collections:
       - {label: Table of Contents, name: toc, widget: boolean, default: false, required: false}
       - {label: Pin Priority, name: pin, widget: number, default: 0, required: false, hint: '0 = not pinned, higher numbers = higher priority'}
 
-  - name: copyright
-    label: Copyright Notice
-    label_singular: Copyright
-    folder: src/content/copyright
-    create: false
-    delete: false
-    slug: copyright
-    extension: md
-    format: frontmatter
-    fields:
-      - {label: Body, name: body, widget: markdown, required: true}
-
   - name: redirects
     label: Redirections
     label_singular: Redirection
@@ -52,3 +40,13 @@ collections:
       - {label: From Path, name: from, widget: string, required: true, hint: e.g. /old-page}
       - {label: To URL/Path, name: to, widget: string, required: true, hint: e.g. /new-page or https://example.com}
       - {label: HTTP Status, name: status, widget: number, default: 301, required: false}
+
+  - name: pages
+    label: Pages
+    files:
+      - label: Home Page
+        name: index
+        file: src/content/copyright/copyright.md
+        fields:
+          - { label: Copyright, name: body, widget: markdown, required: true }
+
