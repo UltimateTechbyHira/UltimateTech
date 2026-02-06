@@ -1,5 +1,5 @@
 ---
 from: /edit-build-prop-file-android-withwithout-root/
-to: https://ultimatetech.org/
-status: 302
+to: /posts/edit-buildprop-file-on-any-android-with-root-access/
+status: 301
 ---
