@@ -68,7 +68,6 @@ If the command is not found, close and reopen Terminal, or reload your shell con
 
 > [!NOTE]
 > If Homebrew is not installed then install using:
-> 
 > `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
 That is it. Platform Tools is installed on MacOS.
