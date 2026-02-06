@@ -67,8 +67,7 @@ That’s it. No ZIP files. No PATH drama.
 If the command is not found, close and reopen Terminal, or reload your shell config. A system restart is rarely needed.
 
 > [!NOTE]
-> If Homebrew is not installed then install using:
-> `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+> If Homebrew is not installed then install using: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
 That is it. Platform Tools is installed on MacOS.
 
