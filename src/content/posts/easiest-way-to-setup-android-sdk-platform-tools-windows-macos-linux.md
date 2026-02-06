@@ -67,11 +67,9 @@ That’s it. No ZIP files. No PATH drama.
 If the command is not found, close and reopen Terminal, or reload your shell config. A system restart is rarely needed.
 
 > [!NOTE]
-> If Homebrew is not installed then use below command to install
-> >
-> \`\`\`bash
-> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-> \`\`\`
+> If Homebrew is not installed then install using:
+> 
+> `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
 That is it. Platform Tools is installed on MacOS.
 
@@ -81,7 +79,9 @@ Now, installing Android SDK Platform Tools on Linux system depends on distro. Ea
 
 #### Install using Homebrew
 
+```bash
 brew install --cask android-platform-tools
+```
 
 :::warning
 Homebrew on Linux (aka Linuxbrew) **does not support every Linux distro**. Homebrew works best on:
@@ -133,11 +133,11 @@ Open up terminal and paste below command:
 nix-env -iA nixos.androidsdkplatformtools
 ```
 
-#### Install via Snapcraft
+#### Install via Snapcraft:
 
 Open up terminal and paste below command:
 
-```plain
+```bash
 sudo snap install android-platform-tools
 ```
 
@@ -161,7 +161,7 @@ sudo snap alias android-platform-tools.adb adb
 sudo snap alias android-platform-tools.fastboot fastboot
 ```
 
-::: Warning
+:::warning
 Snap packages are **sandboxed**. ADB needs low-level USB access, and sandboxing can break that in subtle ways.
 :::
 
