@@ -11,10 +11,11 @@ export interface Props {
   posts: Post[]
   lang: Language
   pinned?: boolean
+  showDescription?: boolean
 }
 
-const { posts, lang, pinned = false } = Astro.props
-const isHome = isHomePage(Astro.url.pathname)
+const { posts, lang, pinned = false, showDescription } = Astro.props
+const isHome = showDescription ?? isHomePage(Astro.url.pathname)
 ---
 
 <ul>

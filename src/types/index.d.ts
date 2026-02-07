@@ -42,6 +42,7 @@ export interface ThemeConfig {
     toc: boolean
     katex: boolean
     reduceMotion: boolean
+    pageSize: number
   }
   comment: {
     enabled: boolean

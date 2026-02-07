@@ -1,0 +1,53 @@
+---
+import type { GetStaticPathsOptions, Page } from 'astro'
+import type { Post } from '@/types'
+import Pagination from '@/components/Pagination.astro'
+import PostList from '@/components/PostList.astro'
+import { allLocales, themeConfig } from '@/config'
+import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
+import Layout from '@/layouts/Layout.astro'
+import { getPinnedPosts, getRegularPosts } from '@/utils/content'
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const { pageSize } = themeConfig.global
+
+  const paths = await Promise.all(
+    allLocales.map(async (lang) => {
+      const posts = await getRegularPosts(lang)
+      return paginate(posts, {
+        params: { lang: getLangRouteParam(lang) },
+        pageSize,
+      })
+    }),
+  )
+
+  return paths.flat()
+}
+
+export interface Props {
+  page: Page<Post>
+}
+
+const { page } = Astro.props
+const currentLang = getLangFromLocale(Astro.currentLocale)
+const pinnedPosts = page.currentPage === 1 ? await getPinnedPosts(currentLang) : []
+---
+
+<Layout>
+  {/* Pinned Posts - Only on the first page */}
+  {pinnedPosts.length > 0 && (
+    <section class="mb-7.5">
+      <div class="uno-decorative-line" />
+      <PostList posts={pinnedPosts} lang={currentLang} pinned={true} showDescription={true} />
+    </section>
+  )}
+
+  {/* Regular Posts */}
+  <section class="mb-7.5">
+    <div class="uno-decorative-line" />
+    <PostList posts={page.data} lang={currentLang} showDescription={true} />
+  </section>
+
+  {/* Pagination */}
+  <Pagination page={page} />
+</Layout>

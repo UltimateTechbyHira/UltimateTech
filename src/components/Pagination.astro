@@ -1,0 +1,112 @@
+---
+import type { Page } from 'astro'
+import { base } from '@/config'
+
+export interface Props {
+  page: Page<any>
+}
+
+const { page } = Astro.props
+
+const { url, currentPage, lastPage } = page
+
+// Generate page numbers to show
+function getPageNumbers() {
+  const pages = []
+  const maxPagesToShow = 5
+
+  if (lastPage <= maxPagesToShow) {
+    for (let i = 1; i <= lastPage; i++) {
+      pages.push(i)
+    }
+  }
+ else {
+    let start = Math.max(1, currentPage - 2)
+    let end = Math.min(lastPage, currentPage + 2)
+
+    if (currentPage <= 3) {
+      start = 1
+      end = maxPagesToShow
+    }
+ else if (currentPage >= lastPage - 2) {
+      start = lastPage - maxPagesToShow + 1
+      end = lastPage
+    }
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i)
+    }
+  }
+  return pages
+}
+
+const pages = getPageNumbers()
+---
+
+<nav class="mt-8 flex items-center justify-center gap-2" aria-label="Pagination">
+  {/* Previous Page */}
+  {url.prev && (
+    <a
+      href={url.prev}
+      class="h-9 min-w-9 inline-flex items-center justify-center rounded-lg px-2 text-sm transition-colors hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      aria-label="Previous page"
+    >
+      <span class="i-heroicons-chevron-left-20-solid h-5 w-5" />
+      <span class="sr-only">Previous</span>
+    </a>
+  )}
+
+  {/* Page Numbers */}
+  <div class="flex items-center gap-1">
+    {pages[0] > 1 && (
+      <>
+        <a
+          href={`${base}/1/`}
+          class="h-9 min-w-9 inline-flex items-center justify-center rounded-lg px-2 text-sm transition-colors hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        >
+          1
+        </a>
+        {pages[0] > 2 && <span class="px-2 text-secondary">...</span>}
+      </>
+    )}
+
+    {pages.map(p => (
+      <a
+        href={p === 1 ? `${base}/` : `${base}/${p}/`}
+        class:list={[
+          'inline-flex h-9 min-w-9 items-center justify-center rounded-lg px-3 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
+          p === currentPage
+            ? 'bg-primary text-background pointer-events-none'
+            : 'hover:bg-primary/10 hover:text-primary',
+        ]}
+        aria-current={p === currentPage ? 'page' : undefined}
+      >
+        {p}
+      </a>
+    ))}
+
+    {pages[pages.length - 1] < lastPage && (
+      <>
+        {pages[pages.length - 1] < lastPage - 1 && <span class="px-2 text-secondary">...</span>}
+        <a
+          href={`${base}/${lastPage}/`}
+          class="h-9 min-w-9 inline-flex items-center justify-center rounded-lg px-2 text-sm transition-colors hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        >
+          {lastPage}
+        </a>
+      </>
+    )}
+  </div>
+
+  {/* Next Page */}
+  {url.next && (
+    <a
+      href={url.next}
+      class="h-9 min-w-9 inline-flex items-center justify-center rounded-lg px-2 text-sm transition-colors hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      aria-label="Next page"
+    >
+      <span class="sr-only">Next</span>
+      <span class="i-heroicons-chevron-right-20-solid h-5 w-5" />
+    </a>
+  )}
+</nav>
