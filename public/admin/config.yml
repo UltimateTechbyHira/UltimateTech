@@ -19,6 +19,8 @@ collections:
     slug: '{{slug}}'
     extension: md
     format: frontmatter
+    sort_by: published
+    sort_direction: Descending
     fields:
       - {label: Title, name: title, widget: string, required: true}
       - {label: Publish Date, name: published, widget: datetime, required: true}
