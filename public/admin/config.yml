@@ -19,6 +19,7 @@ collections:
     slug: '{{slug}}'
     extension: md
     format: frontmatter
+    # Sort posts by publish date, newest first
     sort_by: published
     sort_direction: Descending
     fields:
@@ -42,7 +43,17 @@ collections:
     fields:
       - {label: From Path, name: from, widget: string, required: true, hint: e.g. /old-page}
       - {label: To URL/Path, name: to, widget: string, required: true, hint: e.g. /new-page or https://ultimatetech.org}
-      - {label: HTTP Status, name: status, widget: number, default: 301, required: false}
+      - label: Redirect Type
+        name: status
+        widget: select
+        default: 301
+        required: false
+        options:
+          - {label: Permanent (301), value: 301}
+          - {label: Temporary (302), value: 302}
+          - {label: See Other (303), value: 303}
+          - {label: Temporary Redirect (307), value: 307}
+          - {label: Permanent Redirect (308), value: 308}
 
   - name: pages
     label: Pages
