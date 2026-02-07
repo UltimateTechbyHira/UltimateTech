@@ -199,6 +199,10 @@ jobs:
             echo "✅ Changes pushed successfully"
           fi
 
+      # Format posts
+      - name: Format posts
+        run: npm run format-posts
+
       # Build the Astro site
       - name: Build Astro site
         run: npm run build
