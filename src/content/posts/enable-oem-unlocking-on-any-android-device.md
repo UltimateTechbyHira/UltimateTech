@@ -4,6 +4,7 @@ published: 2026-02-07T18:53:00
 tags:
 - Android
 - OEM Unlocking
+category: Android
 description: Enable OEM Unlocking on Android safely with this beginner-friendly guide. Clear steps, warnings, and real-world tips before unlocking your bootloader.
 draft: false
 toc: true

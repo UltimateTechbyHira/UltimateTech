@@ -1,10 +1,10 @@
 ---
-import TagList from '@/components/TagList.astro'
+import CategoryList from '@/components/CategoryList.astro'
 import BackButton from '@/components/Widgets/BackButton.astro'
 import { allLocales } from '@/config'
 import { getLangFromLocale, getLangRouteParam } from '@/i18n/lang'
 import Layout from '@/layouts/Layout.astro'
-import { getAllTags } from '@/utils/content'
+import { getAllCategories } from '@/utils/content'
 
 export async function getStaticPaths() {
   return allLocales.map(lang => ({
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const currentLang = getLangFromLocale(Astro.currentLocale)
-const allTags = await getAllTags(currentLang)
+const allCategories = await getAllCategories(currentLang)
 ---
 
 <Layout>
@@ -21,10 +21,9 @@ const allTags = await getAllTags(currentLang)
   <div class="uno-decorative-line" />
   <!-- Go Back Button On Desktop -->
   <BackButton />
-  <!-- Tag List -->
-  <TagList
-    tags={allTags}
-
+  <!-- Category List -->
+  <CategoryList
+    categories={allCategories}
     lang={currentLang}
   />
 </Layout>

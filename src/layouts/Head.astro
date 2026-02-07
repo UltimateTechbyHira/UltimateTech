@@ -180,11 +180,11 @@ const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', 
     dateModified: postModifiedTime || postPublishedTime,
     author: {
       '@type': 'Person',
-      'name': postAuthor || author,
+      'name': 'Harman Singh Hira',
     },
     publisher: {
       '@type': 'Organization',
-      'name': siteTitle,
+      'name': 'Ultimate Tech',
       'logo': {
         '@type': 'ImageObject',
         'url': new URL(`${base}/icons/apple-touch-icon.png`, Astro.url.origin).toString(),

@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-  
+
   # Allow manual trigger from GitHub Actions tab
   workflow_dispatch:
 
@@ -16,30 +16,30 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     name: Build and Deploy to Cloudflare Pages
-    
+
     steps:
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch full history for Git dates
-      
+          fetch-depth: 0 # Fetch full history for Git dates
+
       # Setup Node.js (Astro requires Node.js)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
       # Install pnpm
       - name: Install pnpm
         run: npm install -g pnpm
-      
+
       # Install dependencies
       - name: Install dependencies
         run: npm install
-      
+
       # Fix publish dates in blog posts
       - name: Add missing dates to markdown files
         run: |
@@ -53,12 +53,12 @@ jobs:
               console.log(`Directory does not exist: ${dir}`);
               return;
             }
-            
+
             const files = fs.readdirSync(dir, { withFileTypes: true });
-            
+
             for (const file of files) {
               const fullPath = path.join(dir, file.name);
-              
+
               if (file.isDirectory()) {
                 processMarkdownFiles(fullPath);
               } else if (file.name.endsWith('.md')) {
@@ -70,7 +70,7 @@ jobs:
           function processFile(filePath) {
             console.log(`\nProcessing: ${filePath}`);
             let content = fs.readFileSync(filePath, 'utf8');
-            
+
             // Check if file has frontmatter
             if (!content.startsWith('---')) {
               console.log(`  ⏭️  No frontmatter found, skipping`);
@@ -109,7 +109,7 @@ jobs:
 
             for (const line of lines) {
               const trimmedLine = line.trim();
-              
+
               // Skip empty lines at the start
               if (!trimmedLine && cleanedLines.length === 0) {
                 continue;
@@ -117,21 +117,21 @@ jobs:
 
               // Check if this is a 'published' field
               const pubMatch = trimmedLine.match(/^published:\s*(.+)$/);
-              
+
               if (pubMatch) {
                 publishedCount++;
                 console.log(`  🔍 Found 'published' field #${publishedCount}: ${trimmedLine}`);
-                
+
                 if (hasPublished) {
                   // Skip duplicate published field
                   console.log(`  ❌ Removing duplicate 'published' field`);
                   needsFix = true;
                   continue;
                 }
-                
+
                 const rawValue = pubMatch[1].trim();
                 const existingDate = rawValue.replace(/^['"]|['"]$/g, '');
-                
+
                 // Check if date format is correct
                 if (!existingDate.includes('T') || rawValue.startsWith("'") || rawValue.startsWith('"')) {
                   console.log(`  🔧 Fixing published date format: ${rawValue} -> ${creationDate}`);
@@ -141,7 +141,7 @@ jobs:
                   console.log(`  ✅ Date format is correct`);
                   cleanedLines.push(line);
                 }
-                
+
                 hasPublished = true;
               } else {
                 // Keep other fields as-is
@@ -180,7 +180,7 @@ jobs:
 
           console.log('\n✨ Date fixing process complete!');
           EOF
-      
+
       # Commit and push fixes if any were made
       - name: Commit date fixes
         run: |
@@ -198,11 +198,11 @@ jobs:
             git push
             echo "✅ Changes pushed successfully"
           fi
-      
+
       # Build the Astro site
       - name: Build Astro site
         run: npm run build
-      
+
       # Deploy to Cloudflare Pages using Wrangler
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

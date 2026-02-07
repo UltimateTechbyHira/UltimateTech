@@ -6,6 +6,7 @@ description: "A detailed educational guide on 9 Android apps that claim to
 tags:
   - Ethical Hacking
   - Android
+category: Android
 draft: false
 toc: false
 pin: 0

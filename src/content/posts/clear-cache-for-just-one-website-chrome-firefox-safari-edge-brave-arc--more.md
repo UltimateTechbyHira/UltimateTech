@@ -9,6 +9,7 @@ description: "Tired of old CSS haunting your site or weird glitches on one page?
 tags:
 - Clear Cache
 - Privacy
+category: Privacy
 draft: false
 toc: false
 ---

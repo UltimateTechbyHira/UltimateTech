@@ -6,6 +6,7 @@ description: "I use FTP clients across Windows, Mac, and Linux. Here is my
 tags:
 - FTP Clients
 - SFTP Clients
+category: Softwares
 draft: false
 toc: false
 pin: 0

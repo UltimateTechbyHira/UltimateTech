@@ -7,6 +7,7 @@ tags:
 - Epic
 - Free Games
 - Automation
+category: Automation
 draft: false
 toc: false
 pin: 0

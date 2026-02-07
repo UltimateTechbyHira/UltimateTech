@@ -2,6 +2,7 @@
 import type { Language } from '@/i18n/config'
 import type { Post } from '@/types'
 import PinIcon from '@/assets/icons/pin-icon.svg'
+import Category from '@/components/Category.astro'
 import PostDate from '@/components/PostDate.astro'
 import { getPostPath } from '@/i18n/path'
 import { getPostDescription } from '@/utils/description'
@@ -29,6 +30,23 @@ const isHome = showDescription ?? isHomePage(Astro.url.pathname)
           isHome ? 'lg:mb-10' : '',
         ]}
       >
+        {/* post category */}
+        {post.data.category && (
+          <div class="mb-1.5 flex items-center gap-2">
+            <Category category={post.data.category} />
+            <div
+              class="text-3.5 font-time"
+              transition:name={`time-${slug}${lang ? `-${lang}` : ''}`}
+              data-disable-theme-toggle-transition
+            >
+          <PostDate
+            date={post.data.published}
+            minutes={post.remarkPluginFrontmatter.minutes}
+          />
+        </div>
+          </div>
+        )}
+
         {/* post title */}
         <h3 class="inline transition-colors hover:c-primary">
           <a
@@ -51,26 +69,6 @@ const isHome = showDescription ?? isHomePage(Astro.url.pathname)
             />
           )}
         </h3>
-
-        {/* mobile post time */}
-        <div
-          class="py-0.8 text-3.5 font-time lg:hidden"
-          transition:name={`time-${slug}${lang ? `-${lang}` : ''}`}
-          data-disable-theme-toggle-transition
-        >
-          <PostDate
-            date={post.data.published}
-            minutes={post.remarkPluginFrontmatter.minutes}
-          />
-        </div>
-
-        {/* desktop post time */}
-        <div class="hidden text-3.65 font-time lg:(ml-2.5 inline)">
-          <PostDate
-            date={post.data.published}
-            minutes={post.remarkPluginFrontmatter.minutes}
-          />
-        </div>
 
         {/* desktop post description */}
         {isHome && (

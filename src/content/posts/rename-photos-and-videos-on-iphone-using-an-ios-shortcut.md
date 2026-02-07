@@ -4,6 +4,7 @@ published: 2026-01-26T10:22:01.000Z
 description: "Learn how to rename photos and videos on iPhone using a simple iOS
   Shortcut. No apps. No cloud hacks. Quick setup and easy use."
 tags: ["iOS", "iOS Shortcut", "Rename Photos"]
+category: iOS
 draft: false
 toc: false
 ---

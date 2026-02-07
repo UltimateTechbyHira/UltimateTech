@@ -5,6 +5,7 @@ tags:
 - Android SDK Platform Tools
 - ADB
 - Android
+category: Android
 description: Install Android SDK Platform Tools on Windows, Linux & MacOS using easiest methods. A beginner-friendly ADB and Fastboot setup guide with tips and warnings.
 draft: false
 toc: true

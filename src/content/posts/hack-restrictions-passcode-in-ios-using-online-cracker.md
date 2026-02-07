@@ -5,6 +5,7 @@ tags:
 - iOS
 - Ethical Hacking
 - Passcode Crack
+category: iOS
 description: Forgot your iOS Restrictions passcode? Here’s a clear, legal guide to understand what it is and how to reset it without risking your data.
 draft: false
 toc: false

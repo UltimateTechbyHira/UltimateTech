@@ -5,6 +5,7 @@ tags:
 - Windows 11
 - Firewall
 - Privacy
+category: Windows
 description: "Windows 11 firewall blocking your app? Here’s a real tutorial with
   clicks and PowerShell commands that actually work. No fluff, just fixes."
 draft: false

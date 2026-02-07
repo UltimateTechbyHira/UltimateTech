@@ -5,6 +5,7 @@ description: 'Step-by-step tutorial to set up the Microsoft Automatic Rewards ex
 tags:
 - Microsoft Rewards
 - Automation
+category: Automation
 draft: false
 toc: false
 pin: 0

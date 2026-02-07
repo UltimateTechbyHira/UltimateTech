@@ -58,7 +58,8 @@ collections:
       - {label: Title, name: title, widget: string, required: true}
       - {label: Publish Date, name: published, widget: datetime, required: true}
       - {label: Description, name: description, widget: text, required: true}
-      - {label: Tags, name: tags, widget: list}
+      - {label: Categories, name: categories, widget: string, required: true, hint: 'e.g. Android, iOS, Privacy, Automation, Windows, Softwares'}
+      - {label: Tags, name: tags, widget: list, required: true, hint: 'e.g. Android, iOS, Privacy, Automation, Windows, Softwares'}
       - {label: Body, name: body, widget: markdown, required: true}
       - {label: Draft, name: draft, widget: boolean, default: false, required: false}
       - {label: Table of Contents, name: toc, widget: boolean, default: true, required: false}

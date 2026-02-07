@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content'
 import type { Language } from '@/i18n/config'
 import { SocialShare } from 'astro-social-share'
 import { getCollection, render } from 'astro:content'
+import Category from '@/components/Category.astro'
 import Comment from '@/components/Comment/Index.astro'
 import PostDate from '@/components/PostDate.astro'
 import TagList from '@/components/TagList.astro'
@@ -91,6 +92,12 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
     <div class="relative">
       <!-- Go Back Button On Desktop -->
       <BackButton />
+      <!-- Category -->
+      {post.data.category && (
+        <div class="mb-4">
+          <Category category={post.data.category} />
+        </div>
+      )}
       <!-- Title -->
       <h1 class="post-title">
         <span

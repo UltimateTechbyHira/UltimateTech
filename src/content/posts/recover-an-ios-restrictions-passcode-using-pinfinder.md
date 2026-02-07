@@ -5,6 +5,7 @@ description: Forgot your iPhone Restrictions passcode? This guide shows how to r
 tags:
   - iOS
   - Passcode Crack
+category: iOS
 draft: false
 toc: true
 pin: 0

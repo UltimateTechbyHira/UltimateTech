@@ -185,6 +185,86 @@ async function _getPostsGroupByTags(lang?: Language) {
 export const getPostsGroupByTags = memoize(_getPostsGroupByTags)
 
 /**
+ * Group posts by their categories
+ *
+ * @param lang The language code to filter by, defaults to site's default language
+ * @returns Map where keys are category names and values are arrays of posts with that category
+ */
+async function _getPostsGroupByCategory(lang?: Language) {
+  const posts = await getPosts(lang)
+  const categoryMap = new Map<string, Post[]>()
+
+  posts.forEach((post: Post) => {
+    const category = post.data.category
+    if (category) {
+      let categoryPosts = categoryMap.get(category)
+      if (!categoryPosts) {
+        categoryPosts = []
+        categoryMap.set(category, categoryPosts)
+      }
+      categoryPosts.push(post)
+    }
+  })
+
+  return categoryMap
+}
+
+export const getPostsGroupByCategory = memoize(_getPostsGroupByCategory)
+
+/**
+ * Get all categories sorted by post count
+ *
+ * @param lang The language code to filter by, defaults to site's default language
+ * @returns Array of categories sorted by popularity (most posts first)
+ */
+async function _getAllCategories(lang?: Language) {
+  const categoryMap = await getPostsGroupByCategory(lang)
+  const categoriesWithCount = Array.from(categoryMap.entries())
+
+  categoriesWithCount.sort((a, b) => b[1].length - a[1].length)
+  return categoriesWithCount.map(([category]) => category)
+}
+
+export const getAllCategories = memoize(_getAllCategories)
+
+/**
+ * Get all posts that belong to a specific category
+ *
+ * @param category The category name to filter posts by
+ * @param lang The language code to filter by, defaults to site's default language
+ * @returns Array of posts that belong to the specified category
+ */
+async function _getPostsByCategory(category: string, lang?: Language) {
+  const categoryMap = await getPostsGroupByCategory(lang)
+  return categoryMap.get(category) ?? []
+}
+
+export const getPostsByCategory = memoize(_getPostsByCategory)
+
+/**
+ * Check which languages support a specific category
+ *
+ * @param category The category name to check language support for
+ * @returns Array of language codes that support the specified category
+ */
+async function _getCategorySupportedLangs(category: string): Promise<Language[]> {
+  const posts = await getCollection(
+    'posts',
+    ({ data }) => !data.draft,
+  )
+  const { allLocales } = await import('@/config')
+
+  return allLocales.filter(locale =>
+    posts.some(post =>
+      post.data.category === category
+      && (post.data.lang === locale || post.data.lang === ''),
+    ),
+  )
+}
+
+export const getCategorySupportedLangs = memoize(_getCategorySupportedLangs)
+
+/**
  * Get all tags sorted by post count
  *
  * @param lang The language code to filter by, defaults to site's default language

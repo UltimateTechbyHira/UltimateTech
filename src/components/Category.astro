@@ -1,0 +1,36 @@
+---
+import { getLangFromPath } from '@/i18n/lang'
+import { getCategoryPath } from '@/i18n/path'
+
+interface Props {
+  category: string
+  class?: string
+}
+
+const { category, class: className } = Astro.props
+const currentPath = Astro.url.pathname
+const currentLang = getLangFromPath(currentPath)
+
+// Extract category from URL if we are on a category page
+const isCategoryPage = /\/categories\/[^/]+\//.test(currentPath)
+const currentCategory = isCategoryPage
+  ? decodeURIComponent(currentPath.match(/\/categories\/([^/]+)\//)?.[1] || '')
+  : undefined
+---
+
+<a
+  href={getCategoryPath(category, currentLang)}
+  class:list={[
+    'block whitespace-nowrap text-3.5 transition-colors hover:c-primary lg:text-3.8',
+    currentCategory === category ? 'font-medium c-primary' : 'c-secondary',
+  ]}
+>
+  <span
+    class:list={[
+      'inline-block bg-primary/10 c-primary text-3 px-2 py-0.5 rounded-md font-medium uppercase tracking-wider',
+      className,
+    ]}
+  >
+    {category}
+  </span>
+</a>
