@@ -2,7 +2,10 @@
 title: Auto-Claim Free Steam & Epic Games
 published: 2026-02-01T12:01:00
 description: Auto-claim free games on Steam & Epic Games using a smart browser extension. Never miss weekly freebies, save time, grow your library with zero efforts.
-tags: []
+tags:
+- steam
+- epic
+- free-games
 draft: false
 toc: false
 pin: 0

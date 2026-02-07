@@ -1,6 +1,9 @@
 ---
 title: Enable OEM Unlocking on any Android Device
 published: 2026-02-07T18:53:00
+tags:
+- Android
+- OEM Unlocking
 description: Enable OEM Unlocking on Android safely with this beginner-friendly guide. Clear steps, warnings, and real-world tips before unlocking your bootloader.
 draft: false
 toc: true

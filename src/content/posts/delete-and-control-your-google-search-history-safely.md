@@ -1,6 +1,9 @@
 ---
 title: Delete and Control Your Google Search History Safely
 published: 2026-02-03T21:44:00
+tags:
+- Google
+- Privacy
 description: Learn how to delete your full Google history the right way, including account data and browser history, without messing things up.
 draft: false
 toc: false

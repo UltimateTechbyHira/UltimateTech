@@ -2,7 +2,9 @@
 title: 'Earn Microsoft Rewards Points Automatically: Step-by-Step Setup'
 published: 2026-02-01T15:19:00
 description: 'Step-by-step tutorial to set up the Microsoft Automatic Rewards extension: auto-search Bing daily, complete tasks, earn points effortlessly. Includes safe settings, mobile options, and important warnings.'
-tags: []
+tags:
+- Microsoft Rewards
+- Automation
 draft: false
 toc: false
 pin: 0

@@ -6,7 +6,9 @@ description: "Tired of old CSS haunting your site or weird glitches on one page?
   Here's the chill way to wipe cache for a single website in Chrome, Firefox,
   Safari, Edge, Brave, Arc without logging into everything again. Save your
   sanity bro."
-tags: []
+tags:
+- Clear Cache
+- Privacy
 draft: false
 toc: false
 ---

@@ -1,6 +1,10 @@
 ---
 title: Easiest Way to Setup Android SDK Platform Tools [Windows/MacOS/Linux]
 published: 2026-02-06T23:19:00
+tags:
+- Android SDK Platform Tools
+- ADB
+- Android
 description: Install Android SDK Platform Tools on Windows, Linux & MacOS using easiest methods. A beginner-friendly ADB and Fastboot setup guide with tips and warnings.
 draft: false
 toc: true

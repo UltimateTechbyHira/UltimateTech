@@ -23,14 +23,8 @@ collections:
       - {label: Title, name: title, widget: string, required: true}
       - {label: Publish Date, name: published, widget: datetime, required: true}
       - {label: Description, name: description, widget: text, required: true}
+      - {label: Tags, name: tags, widget: list}
       - {label: Body, name: body, widget: markdown, required: true}
-      - name: tags
-        label: Tags
-        widget: list
-        field:
-          name: tag
-          label: Tag
-          widget: string
       - {label: Draft, name: draft, widget: boolean, default: false, required: false}
       - {label: Table of Contents, name: toc, widget: boolean, default: true, required: false}
       - {label: Pin Priority, name: pin, widget: number, default: 0, required: false, hint: '0 = not pinned, higher numbers = higher priority'}
@@ -45,7 +39,7 @@ collections:
     format: frontmatter
     fields:
       - {label: From Path, name: from, widget: string, required: true, hint: e.g. /old-page}
-      - {label: To URL/Path, name: to, widget: string, required: true, hint: e.g. /new-page or https://example.com}
+      - {label: To URL/Path, name: to, widget: string, required: true, hint: e.g. /new-page or https://ultimatetech.org}
       - {label: HTTP Status, name: status, widget: number, default: 301, required: false}
 
   - name: pages
