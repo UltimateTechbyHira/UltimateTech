@@ -37,7 +37,7 @@ export const themeConfig: ThemeConfig = {
     toc: true,
     katex: true,
     reduceMotion: false,
-    pageSize: 8,
+    pageSize: 6,
   },
   comment: {
     enabled: true,
