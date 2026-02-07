@@ -2,7 +2,7 @@ backend:
   name: github
   repo: UltimateTechbyHira/UltimateTech
   branch: main
-  base_url: https://auth.ultimatetech.org/
+  base_url: https://ultimatetech-cms-oauth.jatthira.workers.dev
   auth_endpoint: auth
 
 # Media files
@@ -22,6 +22,14 @@ collections:
     # Sort posts by publish date, newest first
     sort_by: published
     sort_direction: Descending
+    # Define which fields can be used for sorting
+    sortable_fields:
+      - name: published
+        label: Publish Date
+      - name: title
+        label: Title
+      - name: description
+        label: Description
     # View filters for easy filtering
     view_filters:
       - label: Drafts
