@@ -2,7 +2,7 @@ backend:
   name: github
   repo: UltimateTechbyHira/UltimateTech
   branch: main
-  base_url: https://ultimatetech-cms-oauth.jatthira.workers.dev
+  base_url: https://auth.ultimatetech.org/
   auth_endpoint: auth
 
 # Media files
