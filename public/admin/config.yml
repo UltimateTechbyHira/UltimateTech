@@ -22,6 +22,30 @@ collections:
     # Sort posts by publish date, newest first
     sort_by: published
     sort_direction: Descending
+    # View filters for easy filtering
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+      - label: Published
+        field: draft
+        pattern: false
+      - label: Recent (Last 30 days)
+        field: published
+        pattern: last30days
+      - label: This Year
+        field: published
+        pattern: thisyear
+    # Group posts by year and month
+    view_groups:
+      - label: Year
+        field: published
+        pattern: yyyy
+      - label: Year & Month
+        field: published
+        pattern: yyyy-MM
+      - label: Tags
+        field: tags
     fields:
       - {label: Title, name: title, widget: string, required: true}
       - {label: Publish Date, name: published, widget: datetime, required: true}
