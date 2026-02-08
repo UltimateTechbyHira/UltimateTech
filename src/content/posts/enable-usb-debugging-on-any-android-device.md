@@ -7,7 +7,7 @@ tags:
 category: Android
 description: Stuck enabling USB Debugging on Android? Here’s how I do it step by step, no fluff, no stress, just clean vibes and real talk.
 draft: false
-toc: false
+toc: true
 pin: 0
 ---
 

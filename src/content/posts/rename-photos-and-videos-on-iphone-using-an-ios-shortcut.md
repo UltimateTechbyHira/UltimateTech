@@ -6,7 +6,7 @@ description: "Learn how to rename photos and videos on iPhone using a simple iOS
 tags: ["iOS", "iOS Shortcut", "Rename Photos"]
 category: iOS
 draft: false
-toc: false
+toc: true
 ---
 Renaming photos and videos on iOS is a proper pain. You can edit, crop, filter, and flex. But file names. Nah. Apple said no. If you ever tried to organize media on your iPhone, you already know the struggle.
 

@@ -6,7 +6,7 @@ description: "Stop Google Chrome from automatically opening PDFs on mobile and
 tags: ["Chrome", "PDF", "Auto-Opening", "Privacy"]
 category: Privacy
 draft: false
-toc: false
+toc: true
 ---
 Let’s be real for a sec. You download a PDF, and **Chrome just opens it straight away**. No asking. No warning. Just vibes.
 

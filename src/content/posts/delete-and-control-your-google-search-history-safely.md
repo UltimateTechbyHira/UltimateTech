@@ -7,7 +7,7 @@ tags:
 category: Privacy
 description: Learn how to delete your full Google history the right way, including account data and browser history, without messing things up.
 draft: false
-toc: false
+toc: true
 pin: 0
 ---
 

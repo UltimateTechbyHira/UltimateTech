@@ -8,7 +8,7 @@ tags:
 - SFTP Clients
 category: Softwares
 draft: false
-toc: false
+toc: true
 pin: 0
 ---
 If you touch servers even a little bit, you need a solid FTP or SFTP client. Full stop. I have used these tools while building blogs, fixing bugs at stupid hours, deploying quick patches, and yeah, sometimes panic uploading files because something broke 😭

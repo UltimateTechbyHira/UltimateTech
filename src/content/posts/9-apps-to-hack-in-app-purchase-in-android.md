@@ -8,7 +8,7 @@ tags:
   - Android
 category: Android,
 draft: false
-toc: false
+toc: true
 pin: 0
 ---
 Let’s kick off our first post with something that always gets people talking 👀🔥Today we’re diving into a topic that’s been floating around the Android internet forever apps that claim to hack in-app purchases.

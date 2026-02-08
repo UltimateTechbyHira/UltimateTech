@@ -9,7 +9,7 @@ category: Windows
 description: "Windows 11 firewall blocking your app? Here’s a real tutorial with
   clicks and PowerShell commands that actually work. No fluff, just fixes."
 draft: false
-toc: false
+toc: true
 pin: 0
 ---
 Let me be honest. If you Googled “Windows 11 firewall blocked my app”, you’re probably already annoyed 😤 The app is legit. Your internet is fine. But Windows is acting like an overprotective desi uncle at a wedding.

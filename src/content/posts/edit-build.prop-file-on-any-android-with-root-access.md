@@ -7,7 +7,7 @@ tags:
 category: Android
 description: Learn what the Android build.prop file does, where it lives, and how you can view or safely edit it with root access on your device.
 draft: false
-toc: false
+toc: true
 pin: 0
 ---
 

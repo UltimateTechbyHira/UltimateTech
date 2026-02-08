@@ -7,7 +7,7 @@ tags:
 - Automation
 category: Automation
 draft: false
-toc: false
+toc: true
 pin: 0
 ---
 
