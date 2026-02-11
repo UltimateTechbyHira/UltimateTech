@@ -10,6 +10,8 @@ draft: false
 toc: true
 abbrlink: ''
 pin: 0
+
+author: Your Name
 ---
 
 I ran into this because I noticed my Windows 11 privacy settings looked… incomplete. Some toggles I saw online just weren’t there for me. Turns out Windows hides certain privacy options based on your region.

@@ -9,6 +9,8 @@ category: Automation
 draft: false
 toc: true
 pin: 0
+
+author: Your Name
 ---
 
 Alright, confession time. I am lazy, but like the productive kind of lazy 😌 If there is a way to automate something boring and still get rewards, I am 100 percent doing it.

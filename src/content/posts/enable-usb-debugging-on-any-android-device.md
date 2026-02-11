@@ -9,6 +9,8 @@ description: Stuck enabling USB Debugging on Android? Here’s how I do it step 
 draft: false
 toc: true
 pin: 0
+
+author: Your Name
 ---
 
 If you have ever tried doing anything even slightly nerdy on Android, like using ADB, Fastboot, flashing stuff, or messing with TWRP, USB Debugging is that one setting you *must* turn on. No skipping. No shortcuts. It is the gatekeeper 😤

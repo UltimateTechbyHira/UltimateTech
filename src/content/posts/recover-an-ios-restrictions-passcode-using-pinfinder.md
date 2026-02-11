@@ -9,6 +9,8 @@ category: iOS
 draft: false
 toc: true
 pin: 0
+
+author: Your Name
 ---
 
 I’m doing this because forgetting the iOS Restrictions or Screen Time passcode is way more common than people admit. Been there, felt silly, panicked a bit 😅. If you own the device and just need access back to your own settings, PinFinder is one of the few tools that actually works for older iOS versions. I tested this myself, and I’m walking you through it properly, step by step, no mystery jumps.

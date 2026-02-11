@@ -10,6 +10,8 @@ description: Install Android SDK Platform Tools on Windows, Linux & MacOS using 
 draft: false
 toc: true
 pin: 0
+
+author: Your Name
 ---
 
 If you have ever messed around with Android beyond just tapping apps, chances are you have heard of ADB. I finally sat down and set up Android SDK Platform Tools properly on my own Windows, and honestly it is way easier than most guides make it sound 😌

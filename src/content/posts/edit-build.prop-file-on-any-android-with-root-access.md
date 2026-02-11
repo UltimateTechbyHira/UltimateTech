@@ -9,6 +9,8 @@ description: Learn what the Android build.prop file does, where it lives, and ho
 draft: false
 toc: true
 pin: 0
+
+author: Your Name
 ---
 
 I have always been that person who opens Android settings and thinks, hmm, what else can I tweak here 👀📱

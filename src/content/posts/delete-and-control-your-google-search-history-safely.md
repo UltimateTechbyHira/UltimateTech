@@ -9,6 +9,8 @@ description: Learn how to delete your full Google history the right way, includi
 draft: false
 toc: true
 pin: 0
+
+author: Your Name
 ---
 
 I went down the Google history rabbit hole recently and yeah… it’s lowkey wild how much stuff Google remembers if you don’t check it. Searches, YouTube, voice stuff, location pings, the whole shebang 😬

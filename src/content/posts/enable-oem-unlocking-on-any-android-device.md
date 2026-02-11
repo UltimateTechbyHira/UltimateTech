@@ -9,6 +9,8 @@ description: Enable OEM Unlocking on Android safely with this beginner-friendly 
 draft: false
 toc: true
 pin: 0
+
+author: Your Name
 ---
 
 If you have ever looked into unlocking your bootloader, rooting, or flashing custom ROMs, you have probably seen people yell “ENABLE OEM UNLOCKING FIRST” in all caps. And yeah, they are not being dramatic 😅
