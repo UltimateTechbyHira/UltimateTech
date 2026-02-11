@@ -2,7 +2,7 @@
 title: Enable Hidden EU Privacy Settings on Windows 11 Using a Simple PowerShell Script
 published: 2026-02-11T19:16:00
 description: Step by step guide to unlocking EU-only privacy controls in Windows 11, based on a real setup I use on my own machine.
-categories: Windows
+category: Windows
 tags:
   - Windows 11
   - PowerShell
