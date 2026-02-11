@@ -1,12 +1,9 @@
 name: Deploy to Cloudflare Pages
 
 on:
-  # Trigger on push to main branch
   push:
     branches:
       - main
-
-  # Allow manual trigger from GitHub Actions tab
   workflow_dispatch:
 
 permissions:
@@ -14,33 +11,21 @@ permissions:
   deployments: write
 
 jobs:
-  deploy:
+  # Job 1: Fix markdown frontmatter dates
+  fix-dates:
+    name: Fix Markdown Dates
     runs-on: ubuntu-latest
-
-    name: Build and Deploy to Cloudflare Pages
-
     steps:
-      # Checkout the repository
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetch full history for Git dates
+          fetch-depth: 0  # Fetch full history for Git dates
+          
+      - name: Configure Git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
 
-      # Setup Node.js (Astro requires Node.js)
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      # Install pnpm
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      # Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # Fix publish dates in blog posts
       - name: Add missing dates to markdown files
         run: |
           node << 'EOF'
@@ -104,8 +89,9 @@ jobs:
             const lines = frontmatter.split('\n');
             const cleanedLines = [];
             let hasPublished = false;
+            let hasPubDatetime = false;
+            let hasAuthor = false;
             let needsFix = false;
-            let publishedCount = 0;
 
             for (const line of lines) {
               const trimmedLine = line.trim();
@@ -115,24 +101,27 @@ jobs:
                 continue;
               }
 
-              // Check if this is a 'published' field
-              const pubMatch = trimmedLine.match(/^published:\s*(.+)$/);
+              // Check for 'published' field
+              const publishedMatch = trimmedLine.match(/^published:\s*(.+)$/);
+              
+              // Check for 'pubDatetime' field
+              const pubDatetimeMatch = trimmedLine.match(/^pubDatetime:\s*(.+)$/);
+              
+              // Check for 'author' field
+              const authorMatch = trimmedLine.match(/^author:\s*(.+)$/);
 
-              if (pubMatch) {
-                publishedCount++;
-                console.log(`  🔍 Found 'published' field #${publishedCount}: ${trimmedLine}`);
+              if (publishedMatch) {
+                console.log(`  🔍 Found 'published' field`);
 
                 if (hasPublished) {
-                  // Skip duplicate published field
                   console.log(`  ❌ Removing duplicate 'published' field`);
                   needsFix = true;
                   continue;
                 }
 
-                const rawValue = pubMatch[1].trim();
+                const rawValue = publishedMatch[1].trim();
                 const existingDate = rawValue.replace(/^['"]|['"]$/g, '');
 
-                // Check if date format is correct
                 if (!existingDate.includes('T') || rawValue.startsWith("'") || rawValue.startsWith('"')) {
                   console.log(`  🔧 Fixing published date format: ${rawValue} -> ${creationDate}`);
                   cleanedLines.push(`published: ${creationDate}`);
@@ -143,16 +132,49 @@ jobs:
                 }
 
                 hasPublished = true;
+              } else if (pubDatetimeMatch) {
+                console.log(`  🔍 Found 'pubDatetime' field`);
+
+                if (hasPubDatetime) {
+                  console.log(`  ❌ Removing duplicate 'pubDatetime' field`);
+                  needsFix = true;
+                  continue;
+                }
+
+                const rawValue = pubDatetimeMatch[1].trim();
+                const existingDate = rawValue.replace(/^['"]|['"]$/g, '');
+
+                if (!existingDate.includes('T') || rawValue.startsWith("'") || rawValue.startsWith('"')) {
+                  console.log(`  🔧 Fixing pubDatetime date format: ${rawValue} -> ${creationDate}`);
+                  cleanedLines.push(`pubDatetime: ${creationDate}`);
+                  needsFix = true;
+                } else {
+                  console.log(`  ✅ Date format is correct`);
+                  cleanedLines.push(line);
+                }
+
+                hasPubDatetime = true;
+              } else if (authorMatch) {
+                console.log(`  👤 Found 'author' field`);
+                cleanedLines.push(line);
+                hasAuthor = true;
               } else {
                 // Keep other fields as-is
                 cleanedLines.push(line);
               }
             }
 
-            // Add 'published' if it doesn't exist
-            if (!hasPublished) {
+            // Add 'published' if it doesn't exist (and pubDatetime doesn't exist either)
+            if (!hasPublished && !hasPubDatetime) {
               console.log(`  ➕ Adding missing 'published' field`);
               cleanedLines.push(`published: ${creationDate}`);
+              needsFix = true;
+            }
+
+            // Add 'author' if it doesn't exist
+            if (!hasAuthor) {
+              console.log(`  ➕ Adding missing 'author' field`);
+              cleanedLines.push(`author: Your Name`);
               needsFix = true;
             }
 
@@ -168,7 +190,7 @@ jobs:
             }
           }
 
-          // Process content directory (adjust path to match your structure)
+          // Process content directory
           const contentDirs = ['src/content/posts', 'src/content/blog'];
           console.log('🔍 Starting to scan for markdown files...\n');
           for (const dir of contentDirs) {
@@ -178,14 +200,136 @@ jobs:
             }
           }
 
-          console.log('\n✨ Date fixing process complete!');
+          console.log('\n✨ Date adding process complete!');
           EOF
 
-      # Commit and push fixes if any were made
-      - name: Commit date fixes
+      - name: Fix date formats (timezone to UTC)
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          node << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+
+          function processMarkdownFiles(dir) {
+            if (!fs.existsSync(dir)) {
+              console.log(`Directory does not exist: ${dir}`);
+              return;
+            }
+            
+            const files = fs.readdirSync(dir, { withFileTypes: true });
+            
+            for (const file of files) {
+              const fullPath = path.join(dir, file.name);
+              
+              if (file.isDirectory()) {
+                processMarkdownFiles(fullPath);
+              } else if (file.name.endsWith('.md')) {
+                processFile(fullPath);
+              }
+            }
+          }
+
+          function processFile(filePath) {
+            console.log(`\nProcessing: ${filePath}`);
+            let content = fs.readFileSync(filePath, 'utf8');
+            
+            // Check if file has frontmatter
+            if (!content.startsWith('---')) {
+              console.log(`  ⏭️  No frontmatter found, skipping`);
+              return;
+            }
+
+            const frontmatterEnd = content.indexOf('---', 3);
+            if (frontmatterEnd === -1) {
+              console.log(`  ⏭️  Malformed frontmatter, skipping`);
+              return;
+            }
+
+            const frontmatter = content.substring(3, frontmatterEnd);
+            const body = content.substring(frontmatterEnd + 3);
+
+            // Process frontmatter line by line
+            const lines = frontmatter.split('\n');
+            const cleanedLines = [];
+            let needsFix = false;
+
+            for (const line of lines) {
+              const trimmedLine = line.trim();
+              
+              // Skip empty lines at the start
+              if (!trimmedLine && cleanedLines.length === 0) {
+                continue;
+              }
+
+              // Check for published, modDatetime, or pubDatetime fields
+              const dateMatch = trimmedLine.match(/^(published|pubDatetime|modDatetime):\s*(.+)$/);
+              
+              if (dateMatch) {
+                const fieldName = dateMatch[1];
+                const rawValue = dateMatch[2].trim();
+                
+                // Remove quotes if present
+                const dateValue = rawValue.replace(/^['"]|['"]$/g, '');
+                
+                // Skip empty date values
+                if (!dateValue || dateValue === '') {
+                  console.log(`  🗑️  Removing empty ${fieldName} field`);
+                  needsFix = true;
+                  continue;
+                }
+                
+                // Check if date has timezone offset (e.g., +13:00, -05:00)
+                if (dateValue.match(/[+-]\d{2}:\d{2}$/)) {
+                  console.log(`  🔧 Converting ${fieldName} from timezone format to UTC`);
+                  console.log(`     Old: ${dateValue}`);
+                  
+                  try {
+                    // Parse the date and convert to UTC
+                    const date = new Date(dateValue);
+                    const utcDate = date.toISOString();
+                    
+                    console.log(`     New: ${utcDate}`);
+                    cleanedLines.push(`${fieldName}: ${utcDate}`);
+                    needsFix = true;
+                  } catch (e) {
+                    console.log(`     ⚠️  Error parsing date, keeping original`);
+                    cleanedLines.push(line);
+                  }
+                } else {
+                  // Date is already in correct format or doesn't need conversion
+                  cleanedLines.push(line);
+                }
+              } else {
+                // Keep other fields as-is
+                cleanedLines.push(line);
+              }
+            }
+
+            if (needsFix) {
+              console.log(`  💾 Writing date format fixes to file...`);
+              let newFrontmatter = cleanedLines.join('\n').trim();
+              const newContent = `---\n${newFrontmatter}\n---${body}`;
+              fs.writeFileSync(filePath, newContent, 'utf8');
+              console.log(`  ✅ File updated successfully`);
+            } else {
+              console.log(`  ✅ No date format changes needed`);
+            }
+          }
+
+          // Process content directories
+          const contentDirs = ['src/content/posts', 'src/content/blog'];
+          console.log('🔍 Starting date format check...\n');
+          for (const dir of contentDirs) {
+            console.log(`\n📂 Checking directory: ${dir}`);
+            if (fs.existsSync(dir)) {
+              processMarkdownFiles(dir);
+            }
+          }
+
+          console.log('\n✨ Date format fixing complete!');
+          EOF
+
+      - name: Commit and push changes
+        run: |
           echo "📋 Checking for changes..."
           git status
           git add -A
@@ -193,22 +337,78 @@ jobs:
             echo "✅ No changes to commit"
           else
             echo "💾 Committing changes..."
-            git commit -m "🤖 Auto-fix: Update publish dates in blog posts" --no-verify
+            git commit -m "🤖 Auto-fix: Update markdown frontmatter dates" --no-verify
             echo "🚀 Pushing changes..."
             git push
             echo "✅ Changes pushed successfully"
           fi
 
-      # Format posts
+  # Job 2: Build the Astro site
+  build:
+    name: Build Site
+    needs: fix-dates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository with fixed dates
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Format posts
-        run: npm run format-posts
+        run: pnpm run format-posts
 
-      # Build the Astro site
-      - name: Build Astro site
-        run: npm run build
+      - name: Build site
+        run: pnpm run build
 
-      # Deploy to Cloudflare Pages using Wrangler
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 1
+
+  # Job 3: Deploy to Cloudflare Pages
+  deploy:
+    name: Deploy to Cloudflare Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: cloudflare-pages
+      url: ${{ steps.deployment.outputs.url }}
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
       - name: Deploy to Cloudflare Pages
+        id: deployment
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
