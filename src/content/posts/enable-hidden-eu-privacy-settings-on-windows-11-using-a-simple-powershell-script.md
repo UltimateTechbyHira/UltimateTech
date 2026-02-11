@@ -45,7 +45,7 @@ Nothing permanent, no background services, no data collection.
 
 I watched his video and he's the one who gave me this idea to create.
 
-:::youtube{url=https://www.youtube.com/watch?v=MfBNxGw_5J8}
+::youtube{id=MfBNxGw_5J8}
 
 ### How to do it?
 
