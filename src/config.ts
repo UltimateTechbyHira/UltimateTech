@@ -88,7 +88,7 @@ export const themeConfig: ThemeConfig = {
   preload: {
     imageHostURL: '',
     customGoogleAnalyticsJS: '',
-    customUmamiAnalyticsJS: 'https://views.radishzz.cc/script.js',
+    customUmamiAnalyticsJS: '',
   },
 }
 export const base = themeConfig.site.base === '/' ? '' : themeConfig.site.base.replace(/\/$/, '')
