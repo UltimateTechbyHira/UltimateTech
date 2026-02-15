@@ -10,8 +10,6 @@ draft: false
 toc: true
 abbrlink: ''
 pin: 0
-
-author: Your Name
 ---
 
 So you're trying to connect your Android phone to your Windows PC, and nothing's happening. No file transfer, no ADB access, just vibes and disappointment. Been there. The issue? Your PC doesn't have the right USB drivers.
@@ -35,10 +33,10 @@ First up, you need to figure out which driver to install. There are three main o
 
 This is Google's universal driver that works with most Android phones, regardless of manufacturer. It's lighter than the full universal pack and comes straight from the Android SDK.
 
-1. Download the [Google general Android driver](https://download.mobiledit.com/drivers/setup_cdd_google_1_0_8_0.exe) (Mobiledit)
-2. Run the installer as administrator
-3. Follow the prompts and let it install
-4. Restart your PC if prompted
+1. Download the [Google General Android Driver](https://download.mobiledit.com/drivers/setup_cdd_google_1_0_8_0.exe) Pack (Mobiledit).
+2. Run the installer as administrator.
+3. Follow the prompts and let it install.
+4. Restart your PC if prompted.
 
 :::tip
 If your Pixel isn't showing up at all, try a different USB cable. Dodgy cables are more common than you'd think.
@@ -52,7 +50,7 @@ If you work with multiple phones or just want one pack that handles most devices
 This pack doesn't include every single manufacturer out there. If your phone is brand new or super niche, you might need to hunt down the specific driver instead.
 :::
 
-1. Download the[universal driver pack](https://go.hira.im/2r46hk)
+1. Download the [Universal Driver Pack](https://go.hira.im/2r46hk)
 2. Run the installer
 3. Follow the prompts and let it install
 
@@ -66,7 +64,7 @@ If you only use one phone or the universal options aren't working, get the offic
 
 For Pixel phones (or any Google device):
 
-1. Head to the [Android Developer website](https://developer.android.com/studio/run/win-usb)
+1. Head to the [Android Developer](https://developer.android.com/studio/run/win-usb) Website.
 2. Click **Download the Google USB Driver ZIP file**
 3. A popup will appear. Scroll down, tick the terms and conditions box
 4. Click **Download the Google USB Driver**
@@ -86,7 +84,7 @@ If your Pixel isn't showing up at all, try a different USB cable. Dodgy cables a
 
 Samsung has their own driver package that works across Galaxy devices:
 
-1. Go to the [Samsung Developer page](https://developer.samsung.com/android-usb-driver)
+1. Go to the [Samsung Developer](https://developer.samsung.com/android-usb-driver) Page.
 2. Click the **Samsung Android USB Driver for Windows** button
 3. Run the downloaded `.exe` file
 4. Follow the installation wizard
@@ -98,7 +96,7 @@ Samsung's drivers are pretty solid and work even with older Galaxy models. No dr
 
 Xiaomi bundles their drivers with the Mi Unlock tool:
 
-1. Visit the [MiUI unlock page](https://en.miui.com/unlock/download_en.html)
+1. Visit the [MiUI unlock](https://en.miui.com/unlock/download_en.html) Page.
 2. Click **Download Mi Unlock**
 3. Extract the ZIP file
 4. Run the installer inside
