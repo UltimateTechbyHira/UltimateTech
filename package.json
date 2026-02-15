@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "repository": "https://github.com/UltimateTechbyHira/UltimateTech",
   "scripts": {
-    "dev": "astro check && astro dev && bun run pagefind",
-    "build": "astro check && astro build && bun run apply-lqip && bun run pagefind",
+    "dev": "astro check && astro dev && pnpm pagefind",
+    "build": "astro check && astro build && pnpm run apply-lqip && pnpm run pagefind",
     "push": "git add -A && git commit -m 'Update' && git push",
     "preview": "astro preview",
     "astro": "astro",
