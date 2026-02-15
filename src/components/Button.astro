@@ -2,9 +2,12 @@
 import type { Language } from '@/i18n/config'
 import LanguageSwitcherIcon from '@/assets/icons/language-switcher.svg'
 import MoonIcon from '@/assets/icons/moon.svg'
+import SearchIconDark from '@/assets/icons/search-dark.svg'
+import SearchIconLight from '@/assets/icons/search-light.svg'
 import SunIcon from '@/assets/icons/sun.svg'
 import { moreLocales, themeConfig } from '@/config'
-import { getNextGlobalLangPath, getNextSupportedLangPath } from '@/i18n/path'
+import { getLangFromPath } from '@/i18n/lang'
+import { getLocalizedPath, getNextGlobalLangPath, getNextSupportedLangPath } from '@/i18n/path'
 
 interface Props {
   supportedLangs: Language[]
@@ -28,7 +31,7 @@ const nextUrl = supportedLangs.length > 0
 
 <div
   class:list={[
-  'absolute right-7.25vw top-14.6 flex gap-6 min-[823px]:max-lg:right-[calc(50vw-22rem)]',
+  'absolute right-7.25vw flex gap-6 min-[823px]:max-lg:right-[calc(50vw-22rem)]',
   'lg:(fixed bottom-[min(10.27rem+1.92vw,12rem)] right-[max(5rem,calc(50vw-35rem))] top-auto w-14rem)',
 ]}
 >
@@ -48,8 +51,25 @@ const nextUrl = supportedLangs.length > 0
   )}
 
   <!-- Search Toggle -->
-
-
+  <a
+    id="search-link"
+    href={getLocalizedPath('/search', getLangFromPath(currentPath))}
+    class="aspect-square w-4 c-secondary active:scale-90 hover:c-primary"
+    aria-label="Search"
+  >
+    <SearchIconLight
+      class="block w-8 dark:hidden"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+    />
+    <SearchIconDark
+      class="hidden w-8 dark:block"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+    />
+  </a>
   <!-- Theme Toggle -->
   <button
     id="theme-toggle-button"

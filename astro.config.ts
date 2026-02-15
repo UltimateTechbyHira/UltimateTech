@@ -90,6 +90,11 @@ export default defineConfig({
     },
   },
   vite: {
+    build: {
+      rollupOptions: {
+        external: ['@pagefind/default-ui'],
+      },
+    },
     plugins: [
       {
         name: 'prefix-font-urls-with-base',

@@ -21,7 +21,7 @@ const bundlePath = `${import.meta.env.BASE_URL}pagefind/`;
   data-ui-options={JSON.stringify(uiOptions)}
 >
 </div>
-<script>
+<script is:inline>
 // @ts-expect-error - Pagefind UI types are not available
 import { PagefindUI } from '@pagefind/default-ui'
 
@@ -52,7 +52,7 @@ function initPageFind() {
       query = params.get('q')
     }
 
-    const input = el.querySelector<HTMLInputElement>(`input[type="text"]`) as HTMLInputElement | null
+    const input = el.querySelector(`input[type="text"]`)
 
     input?.focus()
 
@@ -61,8 +61,8 @@ function initPageFind() {
       input.dispatchEvent(new Event('input', { bubbles: true }))
 
       // Add Listener to update the URL when the input changes
-      input.addEventListener('input', (e: Event) => {
-        const input = e.target as HTMLInputElement
+      input.addEventListener('input', (e) => {
+        const input = e.target
         const url = new URL(window.location.href)
         const params = new URLSearchParams(url.search)
         params.set('q', input.value)
@@ -80,4 +80,3 @@ else {
   initPageFind()
 }
 </script>
-

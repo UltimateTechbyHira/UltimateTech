@@ -1,9 +1,16 @@
 ---
+import type { Language } from '@/i18n/config'
+import Button from '@/components/Button.astro'
 import CategoryMenu from '@/components/CategoryMenu.astro'
 import { themeConfig } from '@/config'
 import { ui } from '@/i18n/ui'
 import { getPageInfo } from '@/utils/page'
 
+interface Props {
+  supportedLangs?: Language[]
+}
+
+const { supportedLangs = [] } = Astro.props
 const { currentLang, getLocalizedPath, isPost } = getPageInfo(Astro.url.pathname)
 const { title, subtitle, i18nTitle } = themeConfig.site
 
@@ -23,6 +30,7 @@ const SubtitleTag = isPost ? 'div' : 'h2'
     : 'mb-5',
   ]}
 >
+
   <TitleTag
     class:list={[
       'font-bold font-title',
@@ -59,6 +67,6 @@ const SubtitleTag = isPost ? 'div' : 'h2'
       {headerSubtitle}
     </SubtitleTag>
   )}
-
   <CategoryMenu />
+  <Button supportedLangs={supportedLangs} />
 </header>
