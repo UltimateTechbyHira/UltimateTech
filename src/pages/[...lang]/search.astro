@@ -1,5 +1,6 @@
 ---
 import SearchComponent from '@/components/AstroSearch.astro'
+import BackButton from '@/components/Widgets/BackButton.astro'
 import { allLocales } from '@/config'
 import { getLangRouteParam } from '@/i18n/lang'
 import Layout from '@/layouts/Layout.astro'
@@ -10,7 +11,70 @@ export async function getStaticPaths() {
   }))
 }
 ---
-
 <Layout>
-  <SearchComponent id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
+
+  <!-- Page Content -->
+  <div class="heti">
+    <div class="relative">
+      <!-- Go Back Button On Desktop -->
+      <BackButton />
+      <!-- Title -->
+      <h1 class="post-title">
+        <span data-disable-theme-toggle-transition>
+          Search
+        </span>
+      </h1>
+    </div>
+    <!-- Decorative Line -->
+    <div class="uno-decorative-line" />
+    <SearchComponent id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
+  </div>
 </Layout>
+<style is:global>
+  #pagefind-search {
+    --pagefind-ui-font: var(--font-mono);
+    --pagefind-ui-text: var(--foreground);
+    --pagefind-ui-background: var(--background);
+    --pagefind-ui-border: var(--border);
+    --pagefind-ui-primary: var(--accent);
+    --pagefind-ui-tag: var(--background);
+    --pagefind-ui-border-radius: 0.375rem;
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-image-box-ratio: 3 / 2;
+
+    form::before {
+      background-color: var(--foreground);
+    }
+
+    input {
+      font-weight: 400;
+      border: 1px solid var(--border);
+    }
+
+    input:focus-visible {
+      outline: 1px solid var(--accent);
+    }
+
+    .pagefind-ui__result-title a {
+      color: var(--accent);
+      outline-offset: 1px;
+      outline-color: var(--accent);
+    }
+
+    .pagefind-ui__result-title a:focus-visible,
+    .pagefind-ui__search-clear:focus-visible {
+      text-decoration-line: none;
+      outline-width: 2px;
+      outline-style: dashed;
+    }
+
+    .pagefind-ui__result:last-of-type {
+      border-bottom: 0;
+    }
+
+    .pagefind-ui__result-nested .pagefind-ui__result-link:before {
+      font-family: system-ui;
+    }
+  }
+</style>
