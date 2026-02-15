@@ -19,8 +19,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch full history for Git dates
-          
+          fetch-depth: 0 # Fetch full history for Git dates
+
       - name: Configure Git
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -103,10 +103,10 @@ jobs:
 
               // Check for 'published' field
               const publishedMatch = trimmedLine.match(/^published:\s*(.+)$/);
-              
+
               // Check for 'pubDatetime' field
               const pubDatetimeMatch = trimmedLine.match(/^pubDatetime:\s*(.+)$/);
-              
+
               // Check for 'author' field
               const authorMatch = trimmedLine.match(/^author:\s*(.+)$/);
 
@@ -214,12 +214,12 @@ jobs:
               console.log(`Directory does not exist: ${dir}`);
               return;
             }
-            
+
             const files = fs.readdirSync(dir, { withFileTypes: true });
-            
+
             for (const file of files) {
               const fullPath = path.join(dir, file.name);
-              
+
               if (file.isDirectory()) {
                 processMarkdownFiles(fullPath);
               } else if (file.name.endsWith('.md')) {
@@ -231,7 +231,7 @@ jobs:
           function processFile(filePath) {
             console.log(`\nProcessing: ${filePath}`);
             let content = fs.readFileSync(filePath, 'utf8');
-            
+
             // Check if file has frontmatter
             if (!content.startsWith('---')) {
               console.log(`  ⏭️  No frontmatter found, skipping`);
@@ -254,7 +254,7 @@ jobs:
 
             for (const line of lines) {
               const trimmedLine = line.trim();
-              
+
               // Skip empty lines at the start
               if (!trimmedLine && cleanedLines.length === 0) {
                 continue;
@@ -262,31 +262,31 @@ jobs:
 
               // Check for published, modDatetime, or pubDatetime fields
               const dateMatch = trimmedLine.match(/^(published|pubDatetime|modDatetime):\s*(.+)$/);
-              
+
               if (dateMatch) {
                 const fieldName = dateMatch[1];
                 const rawValue = dateMatch[2].trim();
-                
+
                 // Remove quotes if present
                 const dateValue = rawValue.replace(/^['"]|['"]$/g, '');
-                
+
                 // Skip empty date values
                 if (!dateValue || dateValue === '') {
                   console.log(`  🗑️  Removing empty ${fieldName} field`);
                   needsFix = true;
                   continue;
                 }
-                
+
                 // Check if date has timezone offset (e.g., +13:00, -05:00)
                 if (dateValue.match(/[+-]\d{2}:\d{2}$/)) {
                   console.log(`  🔧 Converting ${fieldName} from timezone format to UTC`);
                   console.log(`     Old: ${dateValue}`);
-                  
+
                   try {
                     // Parse the date and convert to UTC
                     const date = new Date(dateValue);
                     const utcDate = date.toISOString();
-                    
+
                     console.log(`     New: ${utcDate}`);
                     cleanedLines.push(`${fieldName}: ${utcDate}`);
                     needsFix = true;
@@ -330,17 +330,17 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          echo "📋 Checking for changes..."
+          echo "Checking for changes..."
           git status
           git add -A
           if git diff --staged --quiet; then
-            echo "✅ No changes to commit"
+            echo "No changes to commit"
           else
-            echo "💾 Committing changes..."
-            git commit -m "🤖 Auto-fix: Update markdown frontmatter dates" --no-verify
-            echo "🚀 Pushing changes..."
+            echo "Committing changes..."
+            git commit -m "Dates Updates" --no-verify
+            echo "Pushing changes..."
             git push
-            echo "✅ Changes pushed successfully"
+            echo "Changes pushed successfully"
           fi
 
   # Job 2: Build the Astro site
@@ -383,7 +383,7 @@ jobs:
         run: pnpm run format-posts
 
       - name: Build site
-        run: pnpm run build
+        run: pnpm build
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
