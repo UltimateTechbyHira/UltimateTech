@@ -29,3 +29,4 @@ node_modules
 bun.lock
 pnpm-lock.yaml
 package-lock.json
+.gitignore
