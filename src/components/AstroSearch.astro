@@ -1,5 +1,4 @@
 ---
-import { base } from '@/config'
 import '@/styles/AstroSearch.css'
 
 export interface Props {
@@ -10,7 +9,7 @@ export interface Props {
 }
 
 const { id, className, query, uiOptions = {} } = Astro.props
-const bundlePath = `${base}pagefind/`;
+const bundlePath = `/pagefind/`;
 ---
 
 <div
