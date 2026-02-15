@@ -1,6 +1,7 @@
 import mdx from '@astrojs/mdx'
 import partytown from '@astrojs/partytown'
 import Compress from 'astro-compress'
+import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
 import rehypeKatex from 'rehype-katex'
 import rehypeMermaid from 'rehype-mermaid'
@@ -41,6 +42,7 @@ export default defineConfig({
     defaultLocale,
   },
   integrations: [
+    pagefind(),
     UnoCSS({
       injectReset: true,
     }),

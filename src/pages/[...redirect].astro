@@ -23,8 +23,5 @@ path = path.slice(0, -1)
   })
 }
 
-const { entry } = Astro.props
-const { to, status } = entry.data
-
-return Astro.redirect(to, status || 301);
+return Astro.redirect(Astro.props.entry.data.to, Astro.props.entry.data.status || 301);
 ---

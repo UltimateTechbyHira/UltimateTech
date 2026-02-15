@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "repository": "https://github.com/UltimateTechbyHira/UltimateTech",
   "scripts": {
-    "dev": "astro check && astro dev",
-    "build": "astro check && astro build && pnpm apply-lqip",
+    "dev": "astro check && astro dev && bun run pagefind",
+    "build": "astro check && astro build && bun run apply-lqip && bun run pagefind",
     "push": "git add -A && git commit -m 'Update' && git push",
     "preview": "astro preview",
     "astro": "astro",
@@ -13,7 +13,8 @@
     "lint:fix": "eslint . --fix",
     "new-post": "tsx scripts/new-post.ts",
     "apply-lqip": "tsx scripts/apply-lqip.ts",
-    "format-posts": "tsx scripts/format-posts.ts"
+    "format-posts": "tsx scripts/format-posts.ts",
+    "pagefind": "pagefind --site dist/"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
@@ -23,6 +24,7 @@
     "astro": "^5.16.11",
     "astro-compress": "^2.3.9",
     "astro-og-canvas": "^0.10.0",
+    "astro-pagefind": "^1.8.5",
     "canvaskit-wasm": "^0.40.0",
     "feed": "^5.2.0",
     "katex": "^0.16.27",
