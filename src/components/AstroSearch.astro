@@ -21,15 +21,16 @@ const bundlePath = `${import.meta.env.BASE_URL}pagefind/`;
   data-ui-options={JSON.stringify(uiOptions)}
 >
 </div>
-<script is:inline>
-// @ts-expect-error - Pagefind UI types are not available
+<script>
 import { PagefindUI } from '@pagefind/default-ui'
 
 function initPageFind() {
   const allSelector = '[data-pagefind-ui]'
-  for (const el of Array.from(document.querySelectorAll(
+  const elements = Array.from(document.querySelectorAll(
     `${allSelector}.pagefind-init`,
-  )) as HTMLElement[]) {
+  ))
+
+  for (const el of elements) {
     const elSelector = [
       ...(el.id ? [`#${el.id}`] : []),
       ...Array.from(el.classList).map(c => `.${c}`),
@@ -37,7 +38,8 @@ function initPageFind() {
     ].join('')
     const bundlePath = el.getAttribute('data-bundle-path')
     const opts = JSON.parse(el.getAttribute('data-ui-options') ?? '{}')
-    const _pagefind = new PagefindUI({
+    // eslint-disable-next-line no-new
+    new PagefindUI({
       ...opts,
       element: elSelector,
       bundlePath,
@@ -54,7 +56,9 @@ function initPageFind() {
 
     const input = el.querySelector(`input[type="text"]`)
 
-    input?.focus()
+    if (input) {
+      input.focus()
+    }
 
     if (input) {
       input.value = query ?? ''

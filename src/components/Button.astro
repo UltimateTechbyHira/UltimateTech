@@ -31,19 +31,19 @@ const nextUrl = supportedLangs.length > 0
 
 <div
   class:list={[
-  'absolute right-7.25vw flex gap-6 min-[823px]:max-lg:right-[calc(50vw-22rem)]',
-  'lg:(fixed bottom-[min(10.27rem+1.92vw,12rem)] right-[max(5rem,calc(50vw-35rem))] top-auto w-14rem)',
-]}
+    'mt-4 flex gap-6 lg:mt-8',
+  ]}
 >
   <!-- Language Switcher -->
   {showLanguageSwitcher && (
     <a
       id="language-switcher"
       href={nextUrl}
-      class="aspect-square w-4 c-secondary active:scale-90 hover:c-primary"
+      class="aspect-square w-8 c-secondary transition-colors active:scale-90 hover:c-primary"
       aria-label="Switch website language"
     >
       <LanguageSwitcherIcon
+        class="h-8 w-8"
         aria-hidden="true"
         fill="currentColor"
       />
@@ -54,17 +54,17 @@ const nextUrl = supportedLangs.length > 0
   <a
     id="search-link"
     href={getLocalizedPath('/search', getLangFromPath(currentPath))}
-    class="aspect-square w-4 c-secondary active:scale-90 hover:c-primary"
+    class="aspect-square w-8 c-secondary transition-colors active:scale-90 hover:c-primary"
     aria-label="Search"
   >
     <SearchIconLight
-      class="block w-8 dark:hidden"
+      class="block h-8 w-8 dark:hidden"
       aria-hidden="true"
       fill="none"
       stroke="currentColor"
     />
     <SearchIconDark
-      class="hidden w-8 dark:block"
+      class="hidden h-8 w-8 dark:block"
       aria-hidden="true"
       fill="none"
       stroke="currentColor"
@@ -73,19 +73,19 @@ const nextUrl = supportedLangs.length > 0
   <!-- Theme Toggle -->
   <button
     id="theme-toggle-button"
-    class="aspect-square w-4 c-secondary active:scale-90 hover:c-primary"
+    class="aspect-square w-8 c-secondary transition-colors active:scale-90 hover:c-primary"
     data-light-mode={lightMode}
     data-dark-mode={darkMode}
     aria-label="Switch light/dark theme"
   >
     <MoonIcon
-      class="moon-icon block w-8 dark:hidden"
+      class="moon-icon block h-8 w-8 dark:hidden"
       aria-hidden="true"
       fill="none"
       stroke="currentColor"
     />
     <SunIcon
-      class="sun-icon hidden w-8 dark:block"
+      class="sun-icon hidden h-8 w-8 dark:block"
       aria-hidden="true"
       fill="none"
       stroke="currentColor"
