@@ -1,11 +1,11 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import type { Language } from '@/i18n/config'
-import { SocialShare } from 'astro-social-share'
 import { getCollection, render } from 'astro:content'
 import Category from '@/components/Category.astro'
 import Comment from '@/components/Comment/Index.astro'
 import PostDate from '@/components/PostDate.astro'
+import { SocialShare } from '@/components/SocialShareButtons'
 import TagList from '@/components/TagList.astro'
 import BackButton from '@/components/Widgets/BackButton.astro'
 import TOC from '@/components/Widgets/TOC.astro'
