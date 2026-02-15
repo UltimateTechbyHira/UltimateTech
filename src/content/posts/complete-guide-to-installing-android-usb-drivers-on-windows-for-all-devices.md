@@ -10,6 +10,8 @@ draft: false
 toc: true
 abbrlink: ''
 pin: 0
+
+author: Your Name
 ---
 
 So you're trying to connect your Android phone to your Windows PC, and nothing's happening. No file transfer, no ADB access, just vibes and disappointment. Been there. The issue? Your PC doesn't have the right USB drivers.
