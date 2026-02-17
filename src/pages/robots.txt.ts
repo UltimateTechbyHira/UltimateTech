@@ -8,6 +8,7 @@ export const GET: APIRoute = ({ site }) => {
     'User-agent: *',
     'Allow: /',
     `Disallow: ${base}/~partytown/`,
+    'Disallow: /admin/',
     '',
     `Sitemap: ${sitemapURL.href}`,
   ].join('\n')
