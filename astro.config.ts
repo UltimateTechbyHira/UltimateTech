@@ -51,7 +51,12 @@ export default defineConfig({
     partytown({
       config: {
         forward: ['dataLayer.push', 'gtag'],
-      },
+        resolveProperty(url: any, _propertyId: any, propertyPath: string[]) {
+          if (['SharedStorage', 'AttributionReporting'].includes(propertyPath[0])) {
+            return null
+          }
+        },
+      } as any,
     }),
     Compress({
       CSS: true,
