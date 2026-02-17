@@ -70,13 +70,8 @@ const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', 
 
 <head>
 <!-- Preconnect -->
-{googleAnalyticsID && <link rel="preconnect" href="https://www.googletagmanager.com" />}
-{umamiAnalyticsID && (
-  <>
-    <link rel="preconnect" href="https://cloud.umami.is" />
-    <link rel="preconnect" href="https://api-gateway.umami.dev" />
-  </>
-)}
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+<link rel="preconnect" href="https://cloud.umami.is" />
 <!-- Basic Info -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -272,14 +267,22 @@ const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', 
 </script>
 
 <!-- Google Analytics -->
-<!-- Using defer (not async) so the inline config script below always runs first.
-     allow_google_signals/allow_ad_personalization_signals are disabled — these
-     are what cause the SharedStorage/AttributionReporting deprecation warnings. -->
+<!-- Define gtag on window object for proper Partytown forwarding -->
+<!-- See https://github.com/QwikDev/partytown/issues/382 -->
 {googleAnalyticsID && (
   <>
     <script
       is:inline
-      define:vars={{ googleAnalyticsID, customGoogleAnalyticsJS }}
+      type="text/partytown"
+      src={customGoogleAnalyticsJS || `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsID}`}
+    />
+    <script
+      is:inline
+      type="text/partytown"
+      define:vars={{
+        googleAnalyticsID,
+        customGoogleAnalyticsJS,
+      }}
     >
       window.dataLayer = window.dataLayer || []
       window.gtag = function () {
@@ -287,19 +290,16 @@ const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', 
         dataLayer.push(arguments)
       }
       window.gtag('js', new Date())
-      window.gtag('config', googleAnalyticsID, {
-        allow_google_signals: false,
-        allow_ad_personalization_signals: false,
-        ...(customGoogleAnalyticsJS && {
+
+      if (customGoogleAnalyticsJS) {
+        window.gtag('config', googleAnalyticsID, {
           transport_url: new URL(customGoogleAnalyticsJS).origin,
-        }),
-      })
+        })
+      }
+      else {
+        window.gtag('config', googleAnalyticsID)
+      }
     </script>
-    <script
-      is:inline
-      defer
-      src={customGoogleAnalyticsJS || `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsID}`}
-    />
   </>
 )}
 
@@ -307,7 +307,7 @@ const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', 
 {umamiAnalyticsID && (
   <script
     is:inline
-    defer
+    type="text/partytown"
     src={customUmamiAnalyticsJS || 'https://cloud.umami.is/script.js'}
     data-website-id={umamiAnalyticsID}
   />

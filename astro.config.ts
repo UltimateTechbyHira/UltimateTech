@@ -1,4 +1,5 @@
 import mdx from '@astrojs/mdx'
+import partytown from '@astrojs/partytown'
 import Compress from 'astro-compress'
 import pagefind from 'astro-pagefind'
 import { defineConfig } from 'astro/config'
@@ -47,7 +48,29 @@ export default defineConfig({
       injectReset: true,
     }),
     mdx(),
-
+    partytown({
+      config: {
+        forward: ['dataLayer.push', 'gtag'],
+        resolveProperty(_url: any, _propertyId: any, propertyPath: string[]) {
+          if (['SharedStorage', 'AttributionReporting'].includes(propertyPath[0])) {
+            return null
+          }
+        },
+        resolveUrl(url: URL) {
+          // Block Google endpoints that trigger SharedStorage / AttributionReporting
+          const blocked = [
+            'googleadservices.com',
+            'doubleclick.net',
+            'google-analytics.com/g/collect',
+            'google-analytics.com/j/collect',
+          ]
+          if (blocked.some(domain => url.href.includes(domain))) {
+            return null
+          }
+          return url
+        },
+      } as any,
+    }),
     Compress({
       CSS: true,
       HTML: true,
