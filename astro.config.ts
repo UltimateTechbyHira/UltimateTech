@@ -51,10 +51,23 @@ export default defineConfig({
     partytown({
       config: {
         forward: ['dataLayer.push', 'gtag'],
-        resolveProperty(url: any, _propertyId: any, propertyPath: string[]) {
+        resolveProperty(_url: any, _propertyId: any, propertyPath: string[]) {
           if (['SharedStorage', 'AttributionReporting'].includes(propertyPath[0])) {
             return null
           }
+        },
+        resolveUrl(url: URL) {
+          // Block Google endpoints that trigger SharedStorage / AttributionReporting
+          const blocked = [
+            'googleadservices.com',
+            'doubleclick.net',
+            'google-analytics.com/g/collect',
+            'google-analytics.com/j/collect',
+          ]
+          if (blocked.some(domain => url.href.includes(domain))) {
+            return null
+          }
+          return url
         },
       } as any,
     }),
