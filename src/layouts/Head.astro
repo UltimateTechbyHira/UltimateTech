@@ -267,18 +267,18 @@ const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', 
 </script>
 
 <!-- Google Analytics -->
-<!-- Define gtag on window object for proper Partytown forwarding -->
-<!-- See https://github.com/QwikDev/partytown/issues/382 -->
+<!-- Loaded directly (not via Partytown) to avoid deprecated SharedStorage /
+     AttributionReporting API warnings triggered by Partytown's sandbox SW.
+     See: https://github.com/withastro/astro/issues/15494 -->
 {googleAnalyticsID && (
   <>
     <script
       is:inline
-      type="text/partytown"
+      async
       src={customGoogleAnalyticsJS || `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsID}`}
     />
     <script
       is:inline
-      type="text/partytown"
       define:vars={{
         googleAnalyticsID,
         customGoogleAnalyticsJS,
@@ -291,21 +291,21 @@ const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', 
       }
       window.gtag('js', new Date())
 
-      // Disable ad-related signals to prevent deprecated SharedStorage /
-      // AttributionReporting API warnings in Partytown's sandbox environment
-      const baseConfig = {
+      // Disable ad signals — not needed for a blog and avoids
+      // SharedStorage / AttributionReporting API calls from gtag itself
+      const _gaConfig = {
         allow_google_signals: false,
         allow_ad_personalization_signals: false,
       }
 
       if (customGoogleAnalyticsJS) {
         window.gtag('config', googleAnalyticsID, {
-          ...baseConfig,
+          ..._gaConfig,
           transport_url: new URL(customGoogleAnalyticsJS).origin,
         })
       }
       else {
-        window.gtag('config', googleAnalyticsID, baseConfig)
+        window.gtag('config', googleAnalyticsID, _gaConfig)
       }
     </script>
   </>
@@ -315,7 +315,7 @@ const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', 
 {umamiAnalyticsID && (
   <script
     is:inline
-    type="text/partytown"
+    defer
     src={customUmamiAnalyticsJS || 'https://cloud.umami.is/script.js'}
     data-website-id={umamiAnalyticsID}
   />
