@@ -1,16 +1,16 @@
 ---
 title: Easiest Way to Setup Android SDK Platform Tools [Windows/MacOS/Linux]
 published: 2026-02-06T23:19:00
-tags:
-- Android SDK Platform Tools
-- ADB
-- Android
-category: Android
 description: Install Android SDK Platform Tools on Windows, Linux & MacOS using easiest methods. A beginner-friendly ADB and Fastboot setup guide with tips and warnings.
+category: Android
+tags:
+  - Android SDK Platform Tools
+  - ADB
+  - Android
 draft: false
 toc: true
+abbrlink: ''
 pin: 0
-
 author: Your Name
 ---
 
@@ -51,6 +51,8 @@ These tools let you do things like:
 
 ### Install Android SDK Platform Tools on Windows
 
+#### Via WinGet (Recommended)
+
 Open up **Terminal** (Command Prompt window) and Paste below command
 
 ```bash
@@ -59,7 +61,25 @@ winget install -e --id Google.PlatformTools
 
 That's it. **Restart PC** so that ADB can be updated in the System's Environment Variables.
 
-That is it. Platform Tools is installed on Windows.
+#### Via Scoop
+
+:::info
+Make sure you have installed Scoop in your windows PC. For more info visit: [https://scoop.sh/](https://scoop.sh/)
+:::
+
+Open up **Terminal** (Command Prompt window) and Paste below command
+
+```bash
+scoop install main/adb
+```
+
+That's it. **Restart PC** so that ADB can be updated in the System's Environment Variables.
+
+Platform Tools is installed on Windows.
+
+#### Via Chocolatey
+
+No latest and/or trustworthy package available for Chocolatey. If there will be any, I will update.
 
 ### Install Android SDK Platform Tools on MacOS
 
