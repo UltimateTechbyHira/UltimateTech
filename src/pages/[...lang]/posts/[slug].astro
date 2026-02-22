@@ -89,6 +89,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
   postDescription={description}
   postSlug={post.id}
   supportedLangs={supportedLangs}
+  postWords={remarkPluginFrontmatter.words}
 >
   <article class="heti">
     <div class="relative">

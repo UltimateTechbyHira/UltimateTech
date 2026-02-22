@@ -69,6 +69,7 @@ export function rehypeCodeCopyButton() {
               'className': ['code-copy-button'],
               'type': 'button',
               'aria-label': 'Copy code',
+              'data-copy-code': '',
             },
             children: [copyIcon, checkIcon],
           },

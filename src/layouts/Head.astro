@@ -15,6 +15,7 @@ interface Props {
   postAuthor?: string
   postSection?: string
   postTags?: string[]
+  postWords?: number
 }
 
 // Props and Language
@@ -28,6 +29,7 @@ const {
   postAuthor,
   postSection,
   postTags = [],
+  postWords,
 } = Astro.props
 const { currentLang } = getPageInfo(Astro.url.pathname)
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
@@ -171,10 +173,11 @@ const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', 
 <script
   is:inline
   type="application/ld+json"
-  set:html={JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': postTitle ? 'Article' : 'WebSite',
-  ...(postTitle
+  set:html={JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': postTitle ? 'TechArticle' : 'WebSite',
+    ...(postTitle
 ? {
     headline: postTitle,
     description: pageDescription,
@@ -184,23 +187,82 @@ const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', 
     author: {
       '@type': 'Person',
       'name': 'Harman Singh Hira',
+      'url': 'https://me.hsinghhira.me/',
     },
     publisher: {
       '@type': 'Organization',
-      'name': 'Ultimate Tech',
+      'name': 'UltimateTech',
+      'url': 'https://ultimatetech.org',
       'logo': {
         '@type': 'ImageObject',
         'url': new URL(`${base}/icons/apple-touch-icon.png`, Astro.url.origin).toString(),
       },
     },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': pageUrl,
+    },
+    inLanguage: currentLang,
+    url: pageUrl,
+    keywords: pageKeywords ? pageKeywords.split(',').map(k => k.trim()) : [],
+    wordCount: postWords,
+    articleSection: postSection || postTags[0],
   }
 : {
     name: siteTitle,
     description: siteDescription,
     url: pageUrl,
   }),
-})}
+  },
+  ...(postTitle
+? [{
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': 'Home',
+        'item': new URL(`${base}/`, Astro.url.origin).toString(),
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': 'Posts',
+        'item': new URL(`${base}/posts`, Astro.url.origin).toString(),
+      },
+      {
+        '@type': 'ListItem',
+        'position': 3,
+        'name': postTitle,
+        'item': pageUrl,
+      },
+    ],
+  }]
+: []),
+])}
 />
+
+<!-- Analytics Initialization -->
+<script>
+  import { trackCodeCopy, trackEngagementTime, trackOutboundClicks, trackScrollDepth } from '@/utils/analytics'
+
+  function initAnalytics() {
+    const postSlug = document.body.getAttribute('data-post-slug')
+    if (postSlug) {
+      trackScrollDepth(postSlug)
+      trackEngagementTime(postSlug)
+      trackOutboundClicks(postSlug)
+      trackCodeCopy(postSlug)
+    }
+  }
+
+  // Initialize on first load
+  initAnalytics()
+
+  // Re-initialize after view transitions
+  document.addEventListener('astro:after-swap', initAnalytics)
+</script>
 
 <!-- Global View Transition -->
 <ClientRouter fallback="none" />
