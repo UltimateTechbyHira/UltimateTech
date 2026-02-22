@@ -52,12 +52,12 @@ export default defineConfig({
       config: {
         forward: ['dataLayer.push', 'gtag'],
         resolveProperty(_url: any, _propertyId: any, propertyPath: string[]) {
-          if (['SharedStorage', 'AttributionReporting'].includes(propertyPath[0])) {
+          const top = propertyPath[0]
+          if (['SharedStorage', 'AttributionReporting', 'sharedStorage', 'attributionReporting'].includes(top)) {
             return null
           }
         },
         resolveUrl(url: URL) {
-          // Block Google endpoints that trigger SharedStorage / AttributionReporting
           const blocked = [
             'googleadservices.com',
             'doubleclick.net',
