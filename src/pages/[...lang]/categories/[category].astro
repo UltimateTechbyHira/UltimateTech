@@ -32,8 +32,12 @@ const supportedLangs = await getCategorySupportedLangs(category)
   <div class="uno-decorative-line" />
   <!-- Go Back Button On Desktop -->
   <BackButton />
+  <h1 class="post-title mb-7.5 uppercase">
+    <span>{category}</span>
+  </h1>
   <!-- Posts List -->
   <div class="mt-10.5">
+    <h2 class="sr-only">Articles in this category</h2>
     <PostList
       posts={posts}
       lang={currentLang}

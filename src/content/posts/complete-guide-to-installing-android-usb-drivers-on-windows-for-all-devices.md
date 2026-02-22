@@ -18,7 +18,7 @@ So you're trying to connect your Android phone to your Windows PC, and nothing's
 
 I've dealt with this more times than I care to admit, especially when switching between devices or setting up ADB for the first time. This guide covers how to install Android USB drivers on Windows for basically any phone, whether you've got a Pixel, Samsung, Xiaomi, or something more niche.
 
-### Prerequisites
+## Prerequisites
 
 Before we start, make sure you have:
 
@@ -27,11 +27,11 @@ Before we start, make sure you have:
 - Administrator access on your PC
 - About 5-7 minutes
 
-### Choosing the Right Driver
+## Choosing the Right Driver
 
 First up, you need to figure out which driver to install. There are three main options here:
 
-#### Option 1: Google's General Android Driver (Recommended for Most Phones)
+### Option 1: Google's General Android Driver (Recommended for Most Phones)
 
 This is Google's universal driver that works with most Android phones, regardless of manufacturer. It's lighter than the full universal pack and comes straight from the Android SDK.
 
@@ -44,7 +44,7 @@ This is Google's universal driver that works with most Android phones, regardles
 If your Pixel isn't showing up at all, try a different USB cable. Dodgy cables are more common than you'd think.
 :::
 
-#### Option 2: Universal Driver Pack (For Multiple Manufacturers)
+### Option 2: Universal Driver Pack (For Multiple Manufacturers)
 
 If you work with multiple phones or just want one pack that handles most devices, grab the universal OEM driver pack. It covers most major manufacturers in one go.
 
@@ -58,11 +58,11 @@ This pack doesn't include every single manufacturer out there. If your phone is 
 
 That's it for the universal option. Your PC should now recognize most Android devices.
 
-#### Option 3: Manufacturer-Specific Drivers (Most Reliable)
+### Option 3: Manufacturer-Specific Drivers (Most Reliable)
 
 If you only use one phone or the universal options aren't working, get the official driver from your manufacturer. It's more targeted and usually more stable.
 
-### Installing Google Pixel Drivers
+## Installing Google Pixel Drivers
 
 For Pixel phones (or any Google device):
 
@@ -82,7 +82,7 @@ For Pixel phones (or any Google device):
 If your Pixel isn't showing up at all, try a different USB cable. Dodgy cables are more common than you'd think.
 :::
 
-### Installing Samsung Drivers
+## Installing Samsung Drivers
 
 Samsung has their own driver package that works across Galaxy devices:
 
@@ -94,7 +94,7 @@ Samsung has their own driver package that works across Galaxy devices:
 
 Samsung's drivers are pretty solid and work even with older Galaxy models. No drama here usually.
 
-### Installing Xiaomi, Mi, Poco & Redmi Drivers
+## Installing Xiaomi, Mi, Poco & Redmi Drivers
 
 Xiaomi bundles their drivers with the Mi Unlock tool:
 
@@ -108,57 +108,57 @@ Xiaomi bundles their drivers with the Mi Unlock tool:
 You don't need to unlock your bootloader for the drivers to work. They just package it all together for convenience.
 :::
 
-### Other Manufacturers
+## Other Manufacturers
 
 If your phone isn't from the big three above, here's where to find drivers:
 
-#### Acer
+### Acer
 
 - Official: [Acer Support](https://www.acer.com/support) (need your serial number)
 - Direct link: [Mobiledit mirror](https://download.mobiledit.com/drivers/setup_cdd_acer_1_0_8_0.exe)
 
-#### Alcatel
+### Alcatel
 
 - Official: [Alcatel Support](https://www.alcatelmobile.com/legacy/support/software-drivers/)
 - Direct link: [Mobiledit mirror](https://download.mobiledit.com/drivers/setup_cdd_alcatel_1_0_9_5.exe)
 
-#### Asus
+### Asus
 
 - Official: [ASUS Download Center](https://www.asus.com/support/download-center/)
 - Direct link: [Mobiledit mirror](https://download.mobiledit.com/drivers/setup_cdd_asus_1_0_9_3.exe)
 
-#### BlackBerry
+### BlackBerry
 
 - Official: Requires a [BlackBerry Developer Account](https://login.blackberry.com/sso/SSOPOST/metaAlias/idp)
 - Direct link: [Mobiledit mirror](https://download.mobiledit.com/drivers/setup_cdd_rim_1_0_8_0.exe)
 
-#### FCNT
+### FCNT
 
 - Official: [FCNT Support page](https://www.fcnt.com/support/develop/adb/download_02/)
 - Click **usb_ADBdriver_FCNT_v3.3.zip**
 
-#### HTC
+### HTC
 
 - No official source anymore (classic HTC)
 - Direct link: [Mobiledit mirror](https://download.mobiledit.com/drivers/setup_cdd_htc_1_0_13_1.exe)
 - Alternative: [XDA Forums thread](https://xdaforums.com/t/drivers-latest-htc-drivers-4-2-0-001.2217396/)
 
-#### Huawei
+### Huawei
 
 - Official: [Huawei Consumer page](https://consumer.huawei.com/en/support/driver-list/driver-detail/ac08d3e8-408a-11ed-825a-fa163e0b5281/)
 - Direct link: [Mobiledit mirror](https://download.mobiledit.com/drivers/setup_cdd_huawei_1_0_9_8.exe)
 
-#### Kyocera
+### Kyocera
 
 - Official: [Kyocera Support](https://www.kyoceramobile.com/support/drivers/)
 
-#### Windows Phones
+### Windows Phones
 
 Yeah, these still exist somehow:
 
 - Official: [Microsoft Support](https://www.microsoft.com/en-us/download/details.aspx?id=15)
 
-### Verifying the Installation
+## Verifying the Installation
 
 Once you've installed the drivers:
 
@@ -174,14 +174,14 @@ If it's still not showing up, try:
 - Restarting your PC
 - [Enabling Developer Options](https://ultimatetech.org/posts/enable-usb-debugging-on-any-android-device/) on your phone and turning on USB debugging
 
-### Common Issues and Fixes
+## Common Issues and Fixes
 
 * **Phone charges but doesn't show up:** Your cable might only support charging, not data transfer. Try another cable.
 * **"USB device not recognized" error:** Uninstall the driver from Device Manager, unplug your phone, restart your PC, and try again.
 * **Drivers won't install:** Make sure you're running the installer as administrator. Right-click and select "Run as administrator."
 * **Still nothing works:** Some phones need USB debugging enabled before they'll properly connect for file transfer. Check your Developer Options.
 
-### When All Else Fails
+## When All Else Fails
 
 If your manufacturer isn't listed anywhere and nothing's working, check the [official Android OEM USB drivers list](https://developer.android.com/studio/run/oem-usb#Drivers). It's maintained by Google and has links to basically every manufacturer's driver page.
 

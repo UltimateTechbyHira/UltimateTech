@@ -17,7 +17,7 @@ I’m doing this because forgetting the iOS Restrictions or Screen Time passcode
 
 Before we start, quick reality check. This only works on specific iOS versions, and only if you have access to the device and its backup. No magic, no Hollywood hacking vibes.
 
-### Prerequisites
+## Prerequisites
 
 Make sure you have all of this sorted before touching anything.
 
@@ -30,7 +30,7 @@ Make sure you have all of this sorted before touching anything.
 
 Note: This does not work on iOS 13 or later. Apple changed how the passcode is stored, so PinFinder cannot read it anymore.
 
-### Understand what Restrictions actually are
+## Understand what Restrictions actually are
 
 Restrictions, also called Parental Controls, lock certain features on iOS.
 
@@ -44,7 +44,7 @@ They are protected by a separate four digit PIN. If you forget it, you cannot ch
 
 Why this matters: PinFinder pulls this PIN from your local iTunes backup. No jailbreak needed, which is huge.
 
-### Download PinFinder
+## Download PinFinder
 
 Head to the official [PinFinder releases page on GitHub](https://github.com/gwatts/pinfinder/releases/latest) and download the latest version for your OS.
 
@@ -60,7 +60,7 @@ Once downloaded:
 
 Do not run it yet.
 
-### Take a fresh iTunes backup (important)
+## Take a fresh iTunes backup (important)
 
 This step is non negotiable. Seriously.
 
@@ -81,7 +81,7 @@ Why fresh matters:
 Do not encrypt the backup. Encrypted backups can block PinFinder from reading the data.
 :::
 
-### Run PinFinder on Windows
+## Run PinFinder on Windows
 
 1. Extract the PinFinder zip file
 2. You will see a single executable file
@@ -93,7 +93,7 @@ A Command Prompt window will open and do its thing. After a few seconds, your Re
 Some antivirus tools flag PinFinder as suspicious. This is a false positive because it reads and decrypts backup keys. Temporarily disable antivirus if needed, but only if you trust the source.
 :::
 
-### Run PinFinder on macOS
+## Run PinFinder on macOS
 
 1. Extract `pinfinder.tar.gz`
 2. Right click on PinFinder
@@ -106,7 +106,7 @@ Terminal will launch and run PinFinder automatically. Wait a moment, and your Re
 If macOS blocks it, go to System Settings, Privacy and Security, and allow the app to run.
 :::
 
-### Run PinFinder on Linux
+## Run PinFinder on Linux
 
 1. Extract the downloaded archive
 2. Open a terminal in the extracted folder
@@ -127,7 +127,7 @@ Harman Singh Hira - 8/06/2017  Jun 8, 2017 04:19 PM NZST   2121
 
 Give it a few seconds. Once done, the Restrictions passcode will be shown directly in the terminal output.
 
-### Use the recovered passcode on your device
+## Use the recovered passcode on your device
 
 Now grab your iPhone.
 
@@ -138,20 +138,20 @@ Now grab your iPhone.
 
 That’s it. No restore, no data loss, no stress.
 
-### Important warnings before you celebrate
+## Important warnings before you celebrate
 
 * This only works on iOS 8 to iOS 12.4.4
 * It does not work on iOS 13 or later
 * This should only be used on devices you own or manage
 * If you restore from an old backup later, the old passcode may come back
 
-### Special Thanks
+## Special Thanks
 
 Big shoutout to [Gareth Watts](http://gwatts.com/ "Gareth Watts"), the dev behind PinFinder. Absolute legend for building this tool and even tweeting me about it personally. Love when creators actually show up for their work 🙌
 
 ::tweet{url="https://x.com/garethwatts/status/883876047082541056"}
 
-### Final thoughts
+## Final thoughts
 
 PinFinder is one of those rare tools that just quietly works. No jailbreak, no sketchy steps, no drama. Big thanks to Gareth Watts for building it and even reaching out personally. Absolute legend 👏.
 

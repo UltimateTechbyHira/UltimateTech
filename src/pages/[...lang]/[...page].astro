@@ -45,6 +45,7 @@ const pinnedPosts = page.currentPage === 1 ? await getPinnedPosts(currentLang) :
   {/* Regular Posts */}
   <section class="mb-7.5">
     <div class="uno-decorative-line" />
+    <h2 class="sr-only">Latest Articles</h2>
     <PostList posts={page.data} lang={currentLang} showDescription={true} />
   </section>
 

@@ -19,7 +19,7 @@ I have done this so many times now that my fingers just move on autopilot. New p
 
 Also yes, Android hides this setting like it is some secret underground club. Very “you can’t sit with us” energy 💀
 
-### Why I even bother with USB Debugging?
+## Why I even bother with USB Debugging?
 
 USB Debugging basically lets your phone talk properly to your computer. Without it, ADB and Fastboot are like “bro, I can’t hear you”. With it on, you get full access for things like:
 
@@ -30,7 +30,7 @@ USB Debugging basically lets your phone talk properly to your computer. Without 
 
 If you have ever followed any Android modding tutorial and got stuck, nine times out of ten USB Debugging was off. Facts.
 
-### Quick warning before you flip that switch ⚠️
+## Quick warning before you flip that switch ⚠️
 
 USB Debugging is powerful stuff, but it is not something to turn on casually if you are not sure what you are doing.
 
@@ -43,7 +43,7 @@ My rule is simple:
 
 So yeah, use it wisely, double check commands, and do not YOLO copy paste ADB stuff unless you know what it does. Better safe than sorry, boss 🙏📱
 
-### How I enable USB Debugging? *(my exact flow)*
+## How I enable USB Debugging? *(my exact flow)*
 
 This is the same method I use every single time. No fancy stuff, no third party apps, just stock Android vibes.
 
@@ -58,7 +58,7 @@ This is the same method I use every single time. No fancy stuff, no third party 
 
 That’s it. Done. Sorted. Easy as.
 
-### Small things people mess up (I did too, once)
+## Small things people mess up (I did too, once)
 
 Quick heads up, because I have seen this trip people up heaps:
 
@@ -68,7 +68,7 @@ Quick heads up, because I have seen this trip people up heaps:
 
 If you miss that last popup and tap cancel, your PC will just sit there confused like “bhai what is this” 😅
 
-### My honest take
+## My honest take
 
 Android making you unlock Developer options feels a bit extra, but I kinda get it. Keeps random taps away from powerful settings. Still though, seven taps is such a weird number. Why not five. Why not ten. Android logic is wild.
 

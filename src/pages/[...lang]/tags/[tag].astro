@@ -34,6 +34,9 @@ const supportedLangs = await getTagSupportedLangs(tag)
   <div class="uno-decorative-line" />
   <!-- Go Back Button On Desktop -->
   <BackButton />
+  <h1 class="post-title mb-7.5 uppercase">
+    <span>#{tag}</span>
+  </h1>
   <!-- Tag List -->
   <TagList
     tags={allTags}
@@ -44,6 +47,7 @@ const supportedLangs = await getTagSupportedLangs(tag)
 
   <!-- Posts List -->
   <div class="mt-10.5">
+    <h2 class="sr-only">Articles with this tag</h2>
     <PostList
       posts={posts}
       lang={currentLang}

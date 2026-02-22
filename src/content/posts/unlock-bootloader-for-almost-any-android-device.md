@@ -18,7 +18,7 @@ So you want to unlock your Android bootloader? Maybe you're eyeing custom ROMs, 
 
 I've done this on multiple devices over the years, and honestly, it's not as scary as it sounds. But it does require following steps carefully and understanding what you're getting into. Let me walk you through the entire process.
 
-### What You'll Actually Get From This
+## What You'll Actually Get From This
 
 Once your bootloader is unlocked, you can:
 
@@ -28,7 +28,7 @@ Once your bootloader is unlocked, you can:
 * Modify kernels for better performance or battery life
 * Make deep system modifications that locked devices can't touch
 
-### The Stuff Nobody Tells You (But Should)
+## The Stuff Nobody Tells You (But Should)
 
 Before you start, know that unlocking your bootloader comes with trade-offs:
 
@@ -40,7 +40,7 @@ Before you start, know that unlocking your bootloader comes with trade-offs:
 Unlocking your bootloader **will completely wipe your device** . Everything. Photos, apps, messages, all of it. Back up anything you care about before starting. I'm not kidding about this.
 :::
 
-### Which Manufacturers Actually Let You Do This?
+## Which Manufacturers Actually Let You Do This?
 
 Not all Android devices play nice with bootloader unlocking. Here's the reality:
 
@@ -58,7 +58,7 @@ Not all Android devices play nice with bootloader unlocking. Here's the reality:
 If you bought your phone from a US carrier (Verizon, AT&T, T-Mobile), there's a good chance your bootloader is locked permanently. Carrier models are notoriously difficult or impossible to unlock. Always verify your specific model number online before attempting this.
 :::
 
-### Prerequisites
+## Prerequisites
 
 You'll need a few things ready before starting:
 
@@ -72,7 +72,7 @@ You'll need a few things ready before starting:
 
 If you haven't enabled OEM unlocking or USB debugging yet, do that first. You can't proceed without them.
 
-### Step 1: Get Your Device Into Fastboot Mode
+## Step 1: Get Your Device Into Fastboot Mode
 
 First, connect your phone to your computer using the USB cable.
 
@@ -96,7 +96,7 @@ fastboot devices
 
 You should see your device ID show up. If nothing appears, your drivers aren't working properly or your cable is dodgy.
 
-### Step 2: Unlock the Bootloader
+## Step 2: Unlock the Bootloader
 
 This is the main event. Run this command:
 
@@ -128,7 +128,7 @@ fastboot reboot
 
 Your phone will boot up like it's brand new because, well, it just wiped everything. Go through the setup process again.
 
-### Unlock Critical Partitions (If Required)
+## Unlock Critical Partitions (If Required)
 
 Some devices, particularly Nothing phones and Fairphones, also lock something called "critical partitions." If you're planning to flash custom ROMs or recoveries on these devices, you need to unlock those too.
 
@@ -158,7 +158,7 @@ fastboot reboot
 
 And that's it. Both your bootloader and critical partitions are now unlocked.
 
-### What Happens Next?
+## What Happens Next?
 
 After unlocking, your device might show a warning every time it boots. This is normal and can't be removed without relocking the bootloader (which defeats the point). Some manufacturers show a brief message, others show a full-screen warning for a few seconds.
 

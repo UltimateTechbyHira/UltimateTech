@@ -21,7 +21,7 @@ So in this post, I am walking through exactly how I enable OEM Unlocking on any 
 
 This is based on real usage, not theory, and it pairs perfectly with USB Debugging, which I already covered earlier.
 
-### Prerequisites
+## Prerequisites
 
 Before you start, make sure these basics are sorted.
 
@@ -34,15 +34,15 @@ Before you start, make sure these basics are sorted.
 You do not need a PC or cable just to enable OEM Unlocking.
 :::
 
-### Step-by-step: How I enable OEM Unlocking
+## Step-by-step: How I enable OEM Unlocking
 
-#### 1. Open Settings on your Android device
+### 1. Open Settings on your Android device
 
 I start simple. Unlock the phone and open **Settings** .
 
 This is where everything begins, no shortcuts here.
 
-#### 2. Go to Developer options
+### 2. Go to Developer options
 
 Scroll down and tap **Developer options** .
 
@@ -52,7 +52,7 @@ If you do not see Developer options at all, it means they are not enabled yet.
 Developer options only appear after tapping **Build number** seven times inside **About phone** . If you already enabled USB Debugging before, you are good.
 :::
 
-#### 3. Scroll until you find OEM Unlocking
+### 3. Scroll until you find OEM Unlocking
 
 Inside Developer options, scroll slowly. Do not rush, this menu is long and messy.
 
@@ -60,13 +60,13 @@ Look for **OEM unlocking** .
 
 It usually says something like “Allow the bootloader to be unlocked”.
 
-#### 4. Read the warning carefully (seriously)
+### 4. Read the warning carefully (seriously)
 
 Tap the **OEM unlocking** toggle.
 
 Android will immediately throw a warning popup. This is not just for show.
 
-#### 5. Confirm and enable OEM Unlocking
+### 5. Confirm and enable OEM Unlocking
 
 If you understand what it does and you actually need it, confirm the prompt.
 
@@ -76,7 +76,7 @@ That’s it. OEM Unlocking is enabled.
 
 No reboot required, no cable needed, no fastboot yet.
 
-### Important things I always keep in mind
+## Important things I always keep in mind
 
 This setting looks harmless, but it has real consequences later.
 
@@ -88,7 +88,7 @@ This setting looks harmless, but it has real consequences later.
 If OEM Unlocking is greyed out, connect your phone to the internet, add a Google account, and wait 24 to 72 hours. Some devices enforce a cooldown period.
 :::
 
-### Common issues I have seen (and hit myself)
+## Common issues I have seen (and hit myself)
 
 Here are a few gotchas that trip people up.
 
@@ -100,7 +100,7 @@ Here are a few gotchas that trip people up.
 Xiaomi, Samsung, and some Chinese brands may require account login or additional approval before this works.
 :::
 
-### Should you enable OEM Unlocking casually?
+## Should you enable OEM Unlocking casually?
 
 Short answer, no.
 
@@ -115,7 +115,7 @@ My personal rule is simple.
 
 This setting exists for developers and advanced users, not random tapping.
 
-### My honest take
+## My honest take
 
 OEM Unlocking feels scary at first, but once you understand what it actually does, it makes sense. Android is basically asking, “Are you sure you want full control?”
 

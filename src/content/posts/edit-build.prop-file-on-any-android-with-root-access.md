@@ -19,7 +19,7 @@ Android just invites curiosity. It is open, flexible, and low key encourages you
 
 If you have ever Googled Android tweaks at 2am, you have definitely seen it mentioned. So yeah, let me break it down in plain human language, no tech bro vibes.
 
-### What is **build.prop**?
+## What is **build.prop**?
 
 Android, at its core, is built on Linux. Touch gestures, swipes, taps, pinches, the whole smooth glass experience we live on daily. Under all that, there are system properties quietly deciding how your phone behaves.
 
@@ -35,7 +35,7 @@ You can read system properties without root access. You cannot modify them witho
 
 Without root, you are mostly in read only territory. You can check values using apps or ADB commands and satisfy your curiosity. It is still useful if you want to understand your device better or debug something.
 
-### Prerequisites
+## Prerequisites
 
 Editing **build.prop** for real, though, needs root. There is a way to edit **build.prop** without root but that's a story for another day.
 
@@ -45,7 +45,7 @@ What I usually do is grab a [BuildProp Editor app](https://phoneky.com/android/?
 
 Before touching anything, I always back up my device. Always. I know it sounds boring, but one wrong line in **build.prop** and your phone can bootloop harder than your brain on no sleep. Backup is non negotiable, bro 🤝
 
-### What to do?
+## What to do?
 
 Once the app is installed, you open it up and it shows the **build.prop** file nicely formatted.
 
@@ -61,13 +61,13 @@ You usually get a few options when saving, like **Save**,** Save as** and, **Sav
 
 Changes do not apply until the device restarts. No reboot, no magic. That reboot moment is always a little tense, not gonna lie 😬 But when it boots fine, it feels elite.
 
-### A small reality check though
+## A small reality check though
 
 Editing **build.prop** is powerful, but it is also easy to mess up. This is not something I recommend if you are unsure what a property does. Copying random tweaks from old XDA threads is how people brick phones and then cry on Reddit.
 
 If you are confident, patient, and backed up, it can be a fun way to learn how Android actually works under the hood. If not, maybe just read the values, learn a bit, and leave the editing for another day.
 
-### Final thoughts
+## Final thoughts
 
 Android is already pretty solid out of the box. Tweaking is optional, not mandatory.
 

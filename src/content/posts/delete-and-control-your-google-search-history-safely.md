@@ -19,7 +19,7 @@ So this post is me explaining, in plain human language, how to actually delete y
 
 Grab a chai ☕ or a flat white, let’s get into it.
 
-### First things first, browser history is not your Google history
+## First things first, browser history is not your Google history
 
 This is where most people get cooked.
 
@@ -32,7 +32,7 @@ Even if you use:
 
 Your Google account activity still exists unless you delete it from Google itself 😭
 
-### Clearing browser history (still important tho)
+## Clearing browser history (still important tho)
 
 If you’re using a Chromium based browser or Firefox, this part is easy.
 
@@ -51,7 +51,7 @@ This helps if:
 
 But again, this does NOT delete Google account history if you’re signed in and syncing 😐
 
-### The real boss move, deleting Google account history
+## The real boss move, deleting Google account history
 
 This is the part most old guides mess up.
 
@@ -89,11 +89,11 @@ Lowkey love that Google lets you surgically delete stuff, very clutch 😌
 
 That’s it. Google wipes it from their servers. Proper delete, not vibes based delete.
 
-### Small but important tip
+## Small but important tip
 
 You can manage and review everything anytime inside **Access and control activity in your account** . Worth bookmarking if you care about privacy even a little bit.
 
-### When you’re signed out, Google still remembers (sometimes)
+## When you’re signed out, Google still remembers (sometimes)
 
 Here’s a sneaky one.
 
@@ -105,7 +105,7 @@ If you use the **Google app while signed out** , your search history can still b
 
 So yeah, signed out doesn’t always mean invisible 😬
 
-### Stop saving your search history completely
+## Stop saving your search history completely
 
 If you’re in your “I don’t want Google tracking this era” phase, this is for you.
 
@@ -127,7 +127,7 @@ Also quick reminder:
 
 Your search history is **not saved to your Google Account** when you browse in **Incognito mode** . Still not invisible to the internet, but at least Google account stays clean 😎
 
-### Auto delete search history (set and forget vibes)
+## Auto delete search history (set and forget vibes)
 
 Honestly, this is the best option for most people.
 
@@ -147,7 +147,7 @@ Here’s how:
 
 If you don’t want auto delete at all, you can select **Don’t auto delete activity**. Personally, I don’t recommend that, but hey, your data, your rules.
 
-### Extra privacy glow up (optional but smart)
+## Extra privacy glow up (optional but smart)
 
 If you really wanna go full privacy nerd mode:
 
@@ -159,7 +159,7 @@ You can toggle these individually. You don’t have to nuke everything if you st
 
 Balance is key, not paranoia 😌
 
-### Quick warning because I’m not trying to ruin your day
+## Quick warning because I’m not trying to ruin your day
 
 Deleting history can:
 
@@ -169,7 +169,7 @@ Deleting history can:
 
 If you’re not sure what you’re doing, take a minute, read the options, don’t just rage click delete 😅
 
-### Final thoughts
+## Final thoughts
 
 Google isn’t evil (hopefully), but it definitely remembers too much if you let it. Old guides from years ago aren’t wrong, they’re just outdated as hell.
 

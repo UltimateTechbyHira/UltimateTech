@@ -174,7 +174,7 @@ jobs:
             // Add 'author' if it doesn't exist
             if (!hasAuthor) {
               console.log(`  ➕ Adding missing 'author' field`);
-              cleanedLines.push(`author: Your Name`);
+              cleanedLines.push(`author: Harman Singh Hira`);
               needsFix = true;
             }
 

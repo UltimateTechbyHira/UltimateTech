@@ -18,7 +18,7 @@ I ran into this because I noticed my Windows 11 privacy settings looked… incom
 
 This guide walks through exactly how I unlocked those EU privacy controls safely, using a PowerShell script I built after testing it myself. Nothing fancy, no guesswork, just a clean step by step flow.
 
-### Prerequisites
+## Prerequisites
 
 Before you start, make sure you have the following:
 
@@ -29,7 +29,7 @@ Before you start, make sure you have the following:
 
 That’s it. No extra tools needed upfront.
 
-### Understand what this actually does
+## Understand what this actually does
 
 Windows uses a registry key called `DeviceRegion` to decide which privacy options to show. If this key exists and points to a non-EU region, Windows hides GDPR-related privacy toggles.
 
@@ -43,15 +43,15 @@ The script does four things, in this order:
 
 Nothing permanent, no background services, no data collection.
 
-### Special thanks to: ThioJoe
+## Special thanks to: ThioJoe
 
 I watched his video and he's the one who gave me this idea to create.
 
 ::youtube{id=MfBNxGw_5J8}
 
-### How to do it?
+## How to do it?
 
-#### Step 1: Open PowerShell as Administrator
+### Step 1: Open PowerShell as Administrator
 
 This part matters. Without admin rights, the script will fail.
 
@@ -63,7 +63,7 @@ Do this:
 
 You should now see a PowerShell window with admin privileges.
 
-#### Step 2: Run the script
+### Step 2: Run the script
 
 In the admin PowerShell window, paste this command and press Enter:
 
@@ -82,7 +82,7 @@ Nothing is saved permanently unless you choose the automatic mode later.
 If this feels scary, you can inspect the script source first on GitHub before running it.
 :::
 
-#### Step 3: Choose your mode
+### Step 3: Choose your mode
 
 Once the script starts, you’ll see two options.
 
@@ -107,7 +107,7 @@ Here’s how I decide.
 If you just want zero drama, pick Manual Mode.
 :::
 
-#### Step 4: Follow the on screen instructions
+### Step 4: Follow the on screen instructions
 
 **Manual Mode flow:**
 
@@ -128,7 +128,7 @@ If you just want zero drama, pick Manual Mode.
 In Automatic Mode, Windows Defender may block the tool. If that happens, follow the prompts exactly and re-enable protection afterward.
 :::
 
-#### Step 5: Restart Windows
+### Step 5: Restart Windows
 
 This step is technically optional, but I recommend it.
 
@@ -138,7 +138,7 @@ Restarting ensures:
 * All toggles appear correctly
 * No cached region data sticks around
 
-#### Step 6: Verify the result
+### Step 6: Verify the result
 
 Things I usually check:
 
@@ -150,7 +150,7 @@ Things I usually check:
 Your region will still show your original country. That’s expected.
 :::
 
-### What to do if something fails?
+## What to do if something fails?
 
 If the registry key won’t delete in Manual Mode:
 
@@ -175,7 +175,7 @@ If this feels annoying, switch back to Manual Mode. Same result, less stress.
 
 That’s the full process.
 
-### To conclude
+## To conclude
 
 This started as a random experiment after watching a YouTube video, and now it’s part of my regular Windows setup. It’s not a hacky workaround, it’s just Windows being very region-opinionated.
 

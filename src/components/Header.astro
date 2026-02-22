@@ -11,15 +11,15 @@ interface Props {
 }
 
 const { supportedLangs = [] } = Astro.props
-const { currentLang, getLocalizedPath, isPost } = getPageInfo(Astro.url.pathname)
+const { currentLang, getLocalizedPath, isHome, isPost } = getPageInfo(Astro.url.pathname)
 const { title, subtitle, i18nTitle } = themeConfig.site
 
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
 const headerTitle = i18nTitle ? currentUI.title : title
 const headerSubtitle = i18nTitle ? currentUI.subtitle : subtitle
 
-const TitleTag = isPost ? 'h2' : 'h1'
-const SubtitleTag = isPost ? 'div' : 'h2'
+const TitleTag = isHome ? 'h1' : 'div'
+const SubtitleTag = isHome ? 'h2' : 'div'
 ---
 
 <header

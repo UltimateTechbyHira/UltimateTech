@@ -66,7 +66,7 @@ Now we’re getting into the good stuff. I use this when:
 * I want a clean, explicit firewall rule&#x20;
 * Windows is being stubborn&#x20;
 
-### Step 1: Open PowerShell as Admin
+## Step 1: Open PowerShell as Admin
 
 * Press Start&#x20;
 * Search **PowerShell**&#x20;
@@ -75,7 +75,7 @@ Now we’re getting into the good stuff. I use this when:
 
 If it’s not admin, the command won’t work. No shortcuts here.
 
-### Step 2: Create a Firewall Rule (This Is the Key Command)
+## Step 2: Create a Firewall Rule (This Is the Key Command)
 
 Here’s a real example using Zoom 👇
 
@@ -92,7 +92,7 @@ What this does, in human language:
 
 Important tip, make sure the app path is correct. If the path is wrong, Windows will happily create a useless rule.
 
-### Step 3: Check If the Rule Exists (Always Verify)
+## Step 3: Check If the Rule Exists (Always Verify)
 
 I always run this next.
 
@@ -102,7 +102,7 @@ Get-NetFirewallRule -DisplayName "Zoom"
 
 If the rule exists, PowerShell will show it. If nothing shows up, something went wrong. Double check the name and try again.
 
-### Step 4: Remove the Rule (If You Messed Up or Changed Your Mind)
+## Step 4: Remove the Rule (If You Messed Up or Changed Your Mind)
 
 Yep, you can clean it up too.
 

@@ -20,7 +20,7 @@ In this post, I will walk you through exactly how I installed Android SDK Platfo
 
 This is beginner-safe, but still solid enough if you plan to flash ROMs, unbrick devices, or just yeet bloatware off your phone.
 
-### Prerequisites
+## Prerequisites
 
 Before we start, make sure you have the following sorted.
 
@@ -32,7 +32,7 @@ Before we start, make sure you have the following sorted.
 
 That is it. No Android Studio needed, no sketchy third-party tools.
 
-### What are Android SDK Platform Tools? (quick context)
+## What are Android SDK Platform Tools? (quick context)
 
 Platform Tools is the official Google package that includes:
 
@@ -49,9 +49,9 @@ These tools let you do things like:
 > [!NOTE]
 > If you ever plan to root, flash, or debug Android, this tool is non-negotiable.
 
-### Install Android SDK Platform Tools on Windows
+## Install Android SDK Platform Tools on Windows
 
-#### Via WinGet (Recommended)
+### Via WinGet (Recommended)
 
 Open up **Terminal** (Command Prompt window) and Paste below command
 
@@ -61,7 +61,7 @@ winget install -e --id Google.PlatformTools
 
 That's it. **Restart PC** so that ADB can be updated in the System's Environment Variables.
 
-#### Via Scoop
+### Via Scoop
 
 :::info
 Make sure you have installed Scoop in your windows PC. For more info visit: [https://scoop.sh/](https://scoop.sh/)
@@ -77,11 +77,11 @@ That's it. **Restart PC** so that ADB can be updated in the System's Environment
 
 Platform Tools is installed on Windows.
 
-#### Via Chocolatey
+### Via Chocolatey
 
 No latest and/or trustworthy package available for Chocolatey. If there will be any, I will update.
 
-### Install Android SDK Platform Tools on MacOS
+## Install Android SDK Platform Tools on MacOS
 
 Open Terminal and run:
 
@@ -98,11 +98,11 @@ If the command is not found, close and reopen Terminal, or reload your shell con
 
 That is it. Platform Tools is installed on MacOS.
 
-### Install Android SDK Platform Tools on Linux
+## Install Android SDK Platform Tools on Linux
 
 Now, installing Android SDK Platform Tools on Linux system depends on distro. Easiest is again is Homebrew (the same package manager from macOS) works on Linux too via Linuxbrew.
 
-#### Install using Homebrew
+### Install using Homebrew
 
 ```bash
 brew install --cask android-platform-tools
@@ -118,7 +118,7 @@ Homebrew on Linux (aka Linuxbrew) **does not support every Linux distro**. Homeb
 * Arch Linux
   :::
 
-#### For Debian/Ubuntu-based Linux:
+### For Debian/Ubuntu-based Linux:
 
 Open up terminal and paste below command:
 
@@ -126,7 +126,7 @@ Open up terminal and paste below command:
 sudo apt update && sudo apt install android-tools-adb android-tools-fastboot
 ```
 
-#### Fedora based Linux:
+### Fedora based Linux:
 
 Open up terminal and paste below command:
 
@@ -134,7 +134,7 @@ Open up terminal and paste below command:
 sudo dnf install android-tools
 ```
 
-#### For Arch Linux:
+### For Arch Linux:
 
 Open up terminal and paste below command:
 
@@ -142,7 +142,7 @@ Open up terminal and paste below command:
 sudo pacman -S android-tools
 ```
 
-#### For OpenSUSE Linux:
+### For OpenSUSE Linux:
 
 Open up terminal and paste below command:
 
@@ -150,7 +150,7 @@ Open up terminal and paste below command:
 sudo zypper install android-tools
 ```
 
-#### For NixOS Linux:
+### For NixOS Linux:
 
 Open up terminal and paste below command:
 
@@ -158,7 +158,7 @@ Open up terminal and paste below command:
 nix-env -iA nixos.androidsdkplatformtools
 ```
 
-#### Install via Snapcraft:
+### Install via Snapcraft:
 
 Open up terminal and paste below command:
 
@@ -190,7 +190,7 @@ sudo snap alias android-platform-tools.fastboot fastboot
 Snap packages are **sandboxed**. ADB needs low-level USB access, and sandboxing can break that in subtle ways.
 :::
 
-### Verify if ADB & Fastboot is working
+## Verify if ADB & Fastboot is working
 
 Once you are done with the installation, you can check the installed version of adb using the following command:
 
