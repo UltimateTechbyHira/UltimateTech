@@ -1,5 +1,5 @@
 ---
-title: Back Up Your iPhone Safely Using (Step-by-Step Guide)
+title: Back Up Your iPhone Safely (Step-by-Step Guide)
 published: 2026-02-26T19:14:00
 description: Learn how to securely back up your iPhone using iCloud or iTunes, with clear steps, warnings, and tips to protect your personal data.
 category: iOS
@@ -10,10 +10,8 @@ tags:
   - Safety
 draft: false
 toc: true
-abbrlink: ''
+abbrlink: back-up-your-iphone-safely-step-by-step-guide
 pin: 0
-
-author: Harman Singh Hira
 ---
 
 Alright, let’s be real for a second.
