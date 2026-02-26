@@ -12,6 +12,8 @@ draft: false
 toc: true
 abbrlink: back-up-your-iphone-safely-step-by-step-guide
 pin: 0
+
+author: Harman Singh Hira
 ---
 
 Alright, let’s be real for a second.
