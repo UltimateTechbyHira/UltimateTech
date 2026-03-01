@@ -6,5 +6,8 @@ A modern tech blog built to provide the latest tech news, how-to tutorials, codi
 
 ## 🌐 Site Information
 
-- **Author**: Harman Singh Hira
+- **Author**: Harman Singh Hira ([HSinghHira.me](https://me.hsinghhira.me/))
 - **URL**: [https://ultimatetech.org](https://ultimatetech.org)
+- **RSS**: [https://ultimatetech.org/atom.xml](https://ultimatetech.org/atom.xml)
+- **Sitemap**: [https://ultimatetech.org/sitemap.xml](https://ultimatetech.org/sitemap.xml)
+
