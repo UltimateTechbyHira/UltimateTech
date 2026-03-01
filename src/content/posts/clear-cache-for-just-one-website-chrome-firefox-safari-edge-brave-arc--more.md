@@ -14,7 +14,7 @@ draft: false
 toc: true
 pin: 0
 
-author: Your Name
+author: Harman Singh Hira
 ---
 Bro, the other day I was tweaking my website design, feeling all creative, and bam – some components looked sus af on my other laptop. I was like "nah this can't be real". Cleared the full browser cache + Cloudflare purge, refreshed like a madman, still the same old broken CSS staring back at me. Turns out my regular visitors were probably seeing the janky version too, while I thought it was fixed. Massive facepalm moment.
 

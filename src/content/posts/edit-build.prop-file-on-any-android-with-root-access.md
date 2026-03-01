@@ -10,7 +10,7 @@ draft: false
 toc: true
 pin: 0
 
-author: Your Name
+author: Harman Singh Hira
 ---
 
 I have always been that person who opens Android settings and thinks, hmm, what else can I tweak here 👀📱

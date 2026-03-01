@@ -12,7 +12,7 @@ draft: false
 toc: true
 pin: 0
 
-author: Your Name
+author: Harman Singh Hira
 ---
 Let me be honest. If you Googled “Windows 11 firewall blocked my app”, you’re probably already annoyed 😤 The app is legit. Your internet is fine. But Windows is acting like an overprotective desi uncle at a wedding.
 

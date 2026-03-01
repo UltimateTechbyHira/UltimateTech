@@ -10,7 +10,7 @@ draft: false
 toc: true
 pin: 0
 
-author: Your Name
+author: Harman Singh Hira
 ---
 
 I went down the Google history rabbit hole recently and yeah… it’s lowkey wild how much stuff Google remembers if you don’t check it. Searches, YouTube, voice stuff, location pings, the whole shebang 😬

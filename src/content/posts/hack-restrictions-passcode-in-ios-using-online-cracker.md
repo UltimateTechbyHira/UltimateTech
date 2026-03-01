@@ -11,7 +11,7 @@ draft: false
 toc: true
 pin: 0
 
-author: Your Name
+author: Harman Singh Hira
 ---
 
 If you landed on this page, chances are you forgot your iOS Restrictions passcode and now your iPhone is acting all high and mighty. Been there, done that, instant regret. No stress though, I’ve got you.

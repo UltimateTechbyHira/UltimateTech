@@ -11,7 +11,7 @@ toc: true
 abbrlink: ''
 pin: 0
 
-author: Your Name
+author: Harman Singh Hira
 ---
 
 So you want to unlock your Android bootloader? Maybe you're eyeing custom ROMs, thinking about rooting with Magisk, or just want full control over your device. Whatever the reason, unlocking the bootloader is your first step into proper Android customization.

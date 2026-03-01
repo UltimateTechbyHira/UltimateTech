@@ -97,7 +97,7 @@ Depending on your data, this can take a few minutes to an hour.
 
 After your first backup, you can control what stays in future backups.
 
-Go to: **Settings** → **Your Name** → **iCloud** → **Manage Storage** → **Backups**
+Go to: **Settings** → **Harman Singh Hira** → **iCloud** → **Manage Storage** → **Backups**
 
 Tap your iPhone name.
 

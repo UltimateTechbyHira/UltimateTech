@@ -12,7 +12,7 @@ draft: false
 toc: true
 pin: 0
 
-author: Your Name
+author: Harman Singh Hira
 ---
 
 Tired of those weekly free game drops on Steam and Epic slipping through your fingers? Yaar, same. I’m chilling in Auckland, grinding work and games, but who has time to check stores every bloody Thursday or those special weeks? Nah, not this Kiwi desi gamer.

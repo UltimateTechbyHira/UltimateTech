@@ -8,7 +8,7 @@ category: iOS
 draft: false
 toc: true
 
-author: Your Name
+author: Harman Singh Hira
 ---
 Renaming photos and videos on iOS is a proper pain. You can edit, crop, filter, and flex. But file names. Nah. Apple said no. If you ever tried to organize media on your iPhone, you already know the struggle.
 

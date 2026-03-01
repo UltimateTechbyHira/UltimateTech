@@ -11,7 +11,7 @@ draft: false
 toc: true
 abbrlink: ''
 pin: 0
-author: Your Name
+author: Harman Singh Hira
 ---
 
 If you have ever messed around with Android beyond just tapping apps, chances are you have heard of ADB. I finally sat down and set up Android SDK Platform Tools properly on my own Windows, and honestly it is way easier than most guides make it sound 😌

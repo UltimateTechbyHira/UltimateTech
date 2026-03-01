@@ -8,7 +8,7 @@ category: Privacy
 draft: false
 toc: true
 
-author: Your Name
+author: Harman Singh Hira
 ---
 Let’s be real for a sec. You download a PDF, and **Chrome just opens it straight away**. No asking. No warning. Just vibes.
 
