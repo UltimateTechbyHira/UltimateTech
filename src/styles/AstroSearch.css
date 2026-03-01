@@ -479,3 +479,25 @@ html.dark {
   background: var(--pagefind-ui-background);
   opacity: 0.8;
 }
+
+/* Custom Overrides for injected HTML layout */
+.pagefind-ui__result-title, 
+.pagefind-ui__result-thumb,
+.pagefind-ui__result-tags {
+  display: none !important;
+}
+
+.pagefind-ui__result-excerpt {
+  margin-top: 0 !important;
+  min-width: 100% !important;
+}
+
+.pagefind-ui__result {
+  padding: 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.pagefind-ui__result-inner {
+  margin-top: 0 !important;
+}

@@ -48,10 +48,10 @@ const isHome = showDescription ?? isHomePage(Astro.url.pathname)
         )}
 
         {/* post title */}
-        <h3 class="inline transition-colors hover:c-primary">
+        <h3 class="inline no-underline transition-colors hover:c-primary">
           <a
             class:list={[
-              'cjk:tracking-wide',
+              'no-underline',
               isHome ? 'lg:font-medium lg:text-4.5' : '',
             ]}
             href={getPostPath(slug, lang)}

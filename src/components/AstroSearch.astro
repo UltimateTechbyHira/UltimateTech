@@ -1,4 +1,7 @@
 ---
+import PostList from '@/components/PostList.astro'
+import { getLangFromLocale } from '@/i18n/lang'
+import { getRegularPosts } from '@/utils/content'
 import '@/styles/AstroSearch.css'
 
 export interface Props {
@@ -9,8 +12,14 @@ export interface Props {
 }
 
 const { id, className, query, uiOptions = {} } = Astro.props
-const bundlePath = `/pagefind/`;
+const bundlePath = `/pagefind/`
+const currentLang = getLangFromLocale(Astro.currentLocale)
+const posts = await getRegularPosts(currentLang)
 ---
+
+<div id="pagefind-post-templates" style="display: none;">
+  <PostList posts={posts} lang={currentLang} showDescription={true} />
+</div>
 
 <div
   id={id}
@@ -27,7 +36,6 @@ const bundlePath = `/pagefind/`;
 // Create script tag to load pagefind-ui.js
 const script = document.createElement('script')
 script.src = `${bundlePath}pagefind-ui.js`
-script.type = 'text/partytown'
 document.head.appendChild(script)
 </script>
 
@@ -64,6 +72,34 @@ function initPageFind() {
       ...opts,
       element: elSelector,
       bundlePath,
+      processResult(result: any) {
+        const templates = document.getElementById('pagefind-post-templates')
+        if (templates) {
+          // Normalize the URL
+          let resultUrl = result.url.replace(window.location.origin, '')
+          if (resultUrl && !resultUrl.endsWith('/'))
+            resultUrl += '/'
+
+          const links = Array.from(templates.querySelectorAll('a'))
+          const link = links.find((a) => {
+            const href = a.getAttribute('href')
+            return href === resultUrl || href === resultUrl.replace(/\/$/, '') || `${href}/` === resultUrl
+          })
+
+          if (link) {
+            const li = link.closest('li')
+            if (li) {
+              // Create an identical layout but wrapped in layout CSS overrides
+              const html = `<div class="${li.className}">${li.innerHTML}</div>`
+              result.excerpt = html
+              result.meta.title = '' // Hide default title
+              return result
+            }
+          }
+        }
+
+        return result
+      },
     })
     el.classList.remove('pagefind-init')
     let query = el.getAttribute('data-query')
