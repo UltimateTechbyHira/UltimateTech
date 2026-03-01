@@ -29,7 +29,7 @@ const allTags = await getAllTags(currentLang)
 const supportedLangs = await getTagSupportedLangs(tag)
 ---
 
-<Layout supportedLangs={supportedLangs}>
+<Layout supportedLangs={supportedLangs} tagName={tag}>
   <!-- Decorative Line -->
   <div class="uno-decorative-line" />
   <!-- Go Back Button On Desktop -->

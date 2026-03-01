@@ -16,6 +16,8 @@ interface Props {
   postSection?: string
   postTags?: string[]
   postWords?: number
+  tagName?: string
+  categoryName?: string
 }
 
 // Props and Language
@@ -30,6 +32,8 @@ const {
   postSection,
   postTags = [],
   postWords,
+  tagName,
+  categoryName,
 } = Astro.props
 const { currentLang } = getPageInfo(Astro.url.pathname)
 const currentUI = ui[currentLang as keyof typeof ui] ?? {}
@@ -68,6 +72,188 @@ const pageImage = postSlug
 const pageUrl = Astro.url.href
 const pageDomain = Astro.url.hostname
 const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', '_')
+
+// Schema Logic
+const {
+  isHome,
+  isPost,
+  isTag,
+  isCategory,
+  isSearch,
+  isCopyright,
+  isPostsListing,
+} = getPageInfo(Astro.url.pathname)
+
+const orgId = 'https://ultimatetech.org/#organization'
+const webSiteId = 'https://ultimatetech.org/#website'
+const authorId = 'https://me.hsinghhira.me/#person'
+
+const schemaGraph: any[] = []
+
+// 1. Organization (Always defined for consistency, though GEMINI.md says homepage, reference-ability is key)
+const organizationSchema = {
+  '@type': 'Organization',
+  '@id': orgId,
+  'name': 'Ultimate Tech',
+  'url': 'https://ultimatetech.org/',
+  'logo': {
+    '@type': 'ImageObject',
+    'url': new URL(`${base}/icons/logo.png`, Astro.url.origin).toString(),
+    'width': 600,
+    'height': 60,
+  },
+  'sameAs': [
+    'https://x.com/HSinghHira',
+    'https://github.com/UltimateTechbyHira/UltimateTech',
+  ],
+}
+
+if (isHome) {
+  schemaGraph.push(organizationSchema)
+  schemaGraph.push({
+    '@type': 'WebSite',
+    '@id': webSiteId,
+    'url': 'https://ultimatetech.org/',
+    'name': 'Ultimate Tech',
+    'description': siteDescription,
+    'publisher': { '@id': orgId },
+    'inLanguage': 'en',
+    'potentialAction': {
+      '@type': 'SearchAction',
+      'target': 'https://ultimatetech.org/search/?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  })
+}
+
+if (isPostsListing) {
+  schemaGraph.push({
+    '@type': 'CollectionPage',
+    '@id': 'https://ultimatetech.org/posts/#page',
+    'url': 'https://ultimatetech.org/posts/',
+    'name': 'Posts',
+    'description': 'Browse all tech tutorials, how-to guides, and articles on Ultimate Tech.',
+    'isPartOf': { '@id': webSiteId },
+    'inLanguage': 'en',
+  })
+  schemaGraph.push({
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://ultimatetech.org/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Posts', 'item': 'https://ultimatetech.org/posts/' },
+    ],
+  })
+}
+
+if (isPost) {
+  schemaGraph.push({
+    '@type': 'TechArticle',
+    '@id': `${pageUrl}#article`,
+    'mainEntityOfPage': { '@type': 'WebPage', '@id': pageUrl },
+    'headline': postTitle,
+    'description': pageDescription,
+    'image': pageImage.toString(),
+    'datePublished': postPublishedTime,
+    'dateModified': postModifiedTime || postPublishedTime,
+    'author': {
+      '@type': 'Person',
+      '@id': authorId,
+      'name': 'Harman Singh Hira',
+      'url': 'https://me.hsinghhira.me/',
+    },
+    'publisher': { '@id': orgId },
+    'keywords': pageKeywords ? pageKeywords.split(',').map(k => k.trim()) : [],
+    'wordCount': postWords,
+    'inLanguage': 'en',
+    'isPartOf': { '@id': webSiteId },
+  })
+  schemaGraph.push({
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://ultimatetech.org/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Posts', 'item': 'https://ultimatetech.org/posts/' },
+      { '@type': 'ListItem', 'position': 3, 'name': postTitle, 'item': pageUrl },
+    ],
+  })
+}
+
+if (isCategory && categoryName) {
+  schemaGraph.push({
+    '@type': 'CollectionPage',
+    '@id': `https://ultimatetech.org/categories/${categoryName}/#page`,
+    'url': `https://ultimatetech.org/categories/${categoryName}/`,
+    'name': categoryName,
+    'description': `Browse all Ultimate Tech articles in the ${categoryName} category.`,
+    'isPartOf': { '@id': webSiteId },
+    'inLanguage': 'en',
+  })
+  schemaGraph.push({
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://ultimatetech.org/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Categories', 'item': 'https://ultimatetech.org/categories/' },
+      { '@type': 'ListItem', 'position': 3, 'name': categoryName, 'item': `https://ultimatetech.org/categories/${categoryName}/` },
+    ],
+  })
+}
+
+if (isTag && tagName) {
+  schemaGraph.push({
+    '@type': 'CollectionPage',
+    '@id': `https://ultimatetech.org/tags/${tagName}/#page`,
+    'url': `https://ultimatetech.org/tags/${tagName}/`,
+    'name': tagName,
+    'description': `Browse all Ultimate Tech articles tagged with ${tagName}.`,
+    'isPartOf': { '@id': webSiteId },
+    'inLanguage': 'en',
+  })
+  schemaGraph.push({
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://ultimatetech.org/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Tags', 'item': 'https://ultimatetech.org/tags/' },
+      { '@type': 'ListItem', 'position': 3, 'name': tagName, 'item': `https://ultimatetech.org/tags/${tagName}/` },
+    ],
+  })
+}
+
+if (isSearch) {
+  schemaGraph.push({
+    '@type': 'SearchResultsPage',
+    '@id': 'https://ultimatetech.org/search/#page',
+    'url': 'https://ultimatetech.org/search/',
+    'name': 'Search',
+    'description': 'Search articles, tutorials, and guides on Ultimate Tech.',
+    'isPartOf': { '@id': webSiteId },
+    'inLanguage': 'en',
+  })
+  schemaGraph.push({
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://ultimatetech.org/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Search', 'item': 'https://ultimatetech.org/search/' },
+    ],
+  })
+}
+
+if (isCopyright) {
+  schemaGraph.push({
+    '@type': 'WebPage',
+    '@id': 'https://ultimatetech.org/copyright/#page',
+    'url': 'https://ultimatetech.org/copyright/',
+    'name': 'Copyright',
+    'description': 'Copyright policy and terms for Ultimate Tech.',
+    'isPartOf': { '@id': webSiteId },
+    'inLanguage': 'en',
+  })
+  schemaGraph.push({
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://ultimatetech.org/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Copyright', 'item': 'https://ultimatetech.org/copyright/' },
+    ],
+  })
+}
 ---
 
 <head>
@@ -170,78 +356,16 @@ const pageLocale = currentLang === 'zh-tw' ? 'zh_TW' : currentLang.replace('-', 
 {baidu && <meta name="baidu-site-verification" content={baidu} />}
 
 <!-- JSON-LD Structured Data -->
-<script
-  is:inline
-  type="application/ld+json"
-  set:html={JSON.stringify([
-  {
-    '@context': 'https://schema.org',
-    '@type': postTitle ? 'TechArticle' : 'WebSite',
-    ...(postTitle
-? {
-    headline: postTitle,
-    description: pageDescription,
-    image: pageImage.toString(),
-    datePublished: postPublishedTime,
-    dateModified: postModifiedTime || postPublishedTime,
-    author: {
-      '@type': 'Person',
-      'name': 'Harman Singh Hira',
-      'url': 'https://me.hsinghhira.me/',
-    },
-    publisher: {
-      '@type': 'Organization',
-      'name': 'UltimateTech',
-      'url': 'https://ultimatetech.org',
-      'logo': {
-        '@type': 'ImageObject',
-        'url': new URL(`${base}/icons/apple-touch-icon.png`, Astro.url.origin).toString(),
-      },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': pageUrl,
-    },
-    inLanguage: currentLang,
-    url: pageUrl,
-    keywords: pageKeywords ? pageKeywords.split(',').map(k => k.trim()) : [],
-    wordCount: postWords,
-    articleSection: postSection || postTags[0],
-  }
-: {
-    name: siteTitle,
-    description: siteDescription,
-    url: pageUrl,
-  }),
-  },
-  ...(postTitle
-? [{
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    'itemListElement': [
-      {
-        '@type': 'ListItem',
-        'position': 1,
-        'name': 'Home',
-        'item': new URL(`${base}/`, Astro.url.origin).toString(),
-      },
-      {
-        '@type': 'ListItem',
-        'position': 2,
-        'name': 'Posts',
-        'item': new URL(`${base}/posts`, Astro.url.origin).toString(),
-      },
-      {
-        '@type': 'ListItem',
-        'position': 3,
-        'name': postTitle,
-        'item': pageUrl,
-      },
-    ],
-  }]
-: []),
-])}
-/>
+{schemaGraph.length > 0 && (
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': schemaGraph,
+    })}
+  />
+)}
 
 <!-- Analytics Initialization -->
 <script>

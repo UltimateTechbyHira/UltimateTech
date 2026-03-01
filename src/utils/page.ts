@@ -46,6 +46,18 @@ export function isAboutPage(path: string) {
   return matchPageType(path, 'about')
 }
 
+export function isSearchPage(path: string) {
+  return matchPageType(path, 'search')
+}
+
+export function isCopyrightPage(path: string) {
+  return matchPageType(path, 'copyright')
+}
+
+export function isPostsListingPage(path: string) {
+  return matchPageType(path, 'posts') && !path.split('/').filter(Boolean).some(s => s !== 'posts' && s !== 'en' && s !== 'zh-tw' && s !== base.replace('/', ''))
+}
+
 // Returns page context with language, page types and localization helper
 export function getPageInfo(path: string) {
   const currentLang = getLangFromPath(path)
@@ -54,6 +66,9 @@ export function getPageInfo(path: string) {
   const isTag = isTagPage(path)
   const isCategory = isCategoryPage(path)
   const isAbout = isAboutPage(path)
+  const isSearch = isSearchPage(path)
+  const isCopyright = isCopyrightPage(path)
+  const isPostsListing = isPostsListingPage(path)
 
   return {
     currentLang,
@@ -62,6 +77,9 @@ export function getPageInfo(path: string) {
     isTag,
     isCategory,
     isAbout,
+    isSearch,
+    isCopyright,
+    isPostsListing,
     getLocalizedPath: (targetPath: string) =>
       getLocalizedPath(targetPath, currentLang),
   }

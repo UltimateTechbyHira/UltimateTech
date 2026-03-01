@@ -27,7 +27,7 @@ const posts = await getPostsByCategory(category, currentLang)
 const supportedLangs = await getCategorySupportedLangs(category)
 ---
 
-<Layout supportedLangs={supportedLangs}>
+<Layout supportedLangs={supportedLangs} categoryName={category}>
   <!-- Decorative Line -->
   <div class="uno-decorative-line" />
   <!-- Go Back Button On Desktop -->
