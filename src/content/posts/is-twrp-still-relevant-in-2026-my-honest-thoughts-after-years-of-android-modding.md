@@ -11,6 +11,8 @@ draft: false
 toc: true
 abbrlink: ''
 pin: 0
+
+author: Harman Singh Hira
 ---
 
 The other night I was cleaning up some old folders on my external drive and stumbled across something that instantly teleported me back a few years.
